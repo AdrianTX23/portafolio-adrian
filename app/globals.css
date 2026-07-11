@@ -228,6 +228,13 @@
   .marquee-track {
     animation: marquee-scroll var(--marquee-duration, 30s) linear infinite;
   }
+
+  .text-gradient-brand {
+    background-image: linear-gradient(90deg, var(--brand), var(--aurora-2));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
 }
 
 @keyframes aurora-drift {

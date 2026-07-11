@@ -5,6 +5,7 @@ import { ExperienceSection } from "@/components/sections/experience/experience-s
 import { Hero } from "@/components/sections/hero/hero";
 import { ProjectsSection } from "@/components/sections/projects/projects-section";
 import { SkillsSection } from "@/components/sections/skills/skills-section";
+import { BigStatement } from "@/components/sections/statement/big-statement";
 import { TechnologiesSection } from "@/components/sections/technologies/technologies-section";
 import { TimelineSection } from "@/components/sections/timeline/timeline-section";
 
@@ -15,6 +16,13 @@ export default function HomePage() {
       <About />
       <ExperienceSection />
       <SkillsSection />
+      <BigStatement
+        parts={[
+          "Tengo una obsesión real por los ",
+          { text: "detalles", strong: true },
+          " que nadie más nota.",
+        ]}
+      />
       <TechnologiesSection />
       <ProjectsSection />
       <TimelineSection />

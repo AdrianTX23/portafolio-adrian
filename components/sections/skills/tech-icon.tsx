@@ -17,7 +17,7 @@ import {
 import type { ComponentType } from "react";
 import { cn } from "@/lib/utils";
 
-const ICONS: Record<string, ComponentType<{ className?: string }>> = {
+const ICONS: Record<string, ComponentType<{ className?: string; color?: string }>> = {
   html5: SiHtml5,
   javascript: SiJavascript,
   typescript: SiTypescript,
@@ -33,6 +33,10 @@ const ICONS: Record<string, ComponentType<{ className?: string }>> = {
   git: SiGit,
   github: SiGithub,
 };
+
+// Brand marks that are near-black/white and would vanish against a dark
+// background — render these with currentColor instead of their true brand hex.
+const MONOCHROME_ICONS = new Set(["nextjs", "github"]);
 
 interface TechIconProps {
   icon: string;
@@ -57,5 +61,11 @@ export function TechIcon({ icon, label, className }: TechIconProps) {
     );
   }
 
-  return <Icon className={className} aria-hidden="true" />;
+  return (
+    <Icon
+      className={className}
+      aria-hidden="true"
+      color={MONOCHROME_ICONS.has(icon) ? "currentColor" : "default"}
+    />
+  );
 }
