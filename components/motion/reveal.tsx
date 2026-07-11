@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import type { ElementType, ReactNode } from "react";
+import { createElement, type ElementType, type ReactNode } from "react";
 import { blurIn, revealTransition } from "@/lib/motion";
 
 interface RevealProps {
@@ -23,8 +23,7 @@ export function Reveal({
   const MotionTag = motion[as as "div"];
 
   if (shouldReduceMotion) {
-    const Tag = as;
-    return <Tag className={className}>{children}</Tag>;
+    return createElement(as, { className }, children);
   }
 
   return (

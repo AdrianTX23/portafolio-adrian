@@ -2,9 +2,12 @@ import { ArrowUpRight, Download, MapPin } from "lucide-react";
 import Link from "next/link";
 import { AuroraBackground } from "@/components/motion/aurora-background";
 import { Magnetic } from "@/components/motion/magnetic";
+import { Parallax } from "@/components/motion/parallax";
 import { Reveal } from "@/components/motion/reveal";
 import { TextReveal } from "@/components/motion/text-reveal";
 import { Button } from "@/components/ui/button";
+import { HeroCanvas } from "./hero-canvas";
+import { HeroScrollFade } from "./hero-scroll-fade";
 
 const stats = [
   { label: "Años de experiencia", value: "3+" },
@@ -15,9 +18,12 @@ const stats = [
 export function Hero() {
   return (
     <section className="relative flex min-h-[92svh] flex-col justify-center overflow-hidden">
-      <AuroraBackground />
+      <Parallax speed={0.15} className="absolute inset-0">
+        <AuroraBackground />
+      </Parallax>
+      <HeroCanvas />
 
-      <div className="relative z-10 mx-auto w-full max-w-5xl px-6 text-center sm:px-8">
+      <HeroScrollFade>
         <Reveal>
           <span className="border-border text-muted-foreground mb-6 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium">
             <MapPin className="size-3.5" />
@@ -71,7 +77,7 @@ export function Hero() {
             ))}
           </dl>
         </Reveal>
-      </div>
+      </HeroScrollFade>
     </section>
   );
 }

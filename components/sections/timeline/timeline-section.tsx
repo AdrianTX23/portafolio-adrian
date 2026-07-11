@@ -4,6 +4,7 @@ import { Section } from "@/components/shared/section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { timeline } from "@/content/data/timeline";
 import type { TimelineEvent } from "@/types/experience";
+import { TimelineTrack } from "./timeline-track";
 
 const typeIcons: Record<TimelineEvent["type"], typeof Briefcase> = {
   work: Briefcase,
@@ -15,8 +16,7 @@ export function TimelineSection() {
   return (
     <Section id="timeline" spacing="sm" containerSize="narrow">
       <SectionHeading eyebrow="Recorrido" title="Timeline profesional" />
-      <div className="relative pl-8">
-        <div className="bg-border absolute top-1 bottom-1 left-[0.6875rem] w-px" />
+      <TimelineTrack>
         <ul className="space-y-10">
           {timeline.map((event, i) => {
             const Icon = typeIcons[event.type];
@@ -38,7 +38,7 @@ export function TimelineSection() {
             );
           })}
         </ul>
-      </div>
+      </TimelineTrack>
     </Section>
   );
 }

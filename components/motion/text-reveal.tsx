@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import type { ElementType } from "react";
+import { createElement, type ElementType } from "react";
 import { EASE_OUT_EXPO, staggerContainer } from "@/lib/motion";
 
 interface TextRevealProps {
@@ -32,35 +32,36 @@ export function TextReveal({
   stagger = 0.06,
 }: TextRevealProps) {
   const shouldReduceMotion = useReducedMotion();
-  const Tag = as;
   const words = text.split(" ");
 
   if (shouldReduceMotion) {
-    return <Tag className={className}>{text}</Tag>;
+    return createElement(as, { className }, text);
   }
 
-  return (
-    <Tag className={className} aria-label={text}>
-      <motion.span
-        aria-hidden="true"
-        className="inline"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
-        variants={staggerContainer(stagger, delay)}
-      >
-        {words.map((w, i) => (
-          <span key={i} className="inline-block overflow-hidden pb-[0.15em]">
+  return createElement(
+    as,
+    { className, "aria-label": text },
+    <motion.span
+      aria-hidden="true"
+      className="inline"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+      variants={staggerContainer(stagger, delay)}
+    >
+      {words.map((w, i) => (
+        <span key={i}>
+          <span className="inline-block overflow-hidden pb-[0.15em]">
             <motion.span
               variants={word}
               className={`inline-block will-change-transform ${wordClassName ?? ""}`}
             >
               {w}
-              {i < words.length - 1 ? " " : ""}
             </motion.span>
           </span>
-        ))}
-      </motion.span>
-    </Tag>
+          {i < words.length - 1 ? " " : ""}
+        </span>
+      ))}
+    </motion.span>,
   );
 }

@@ -1,4 +1,4 @@
-import type { ElementType, ReactNode } from "react";
+import { createElement, type ElementType, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 export type ContainerSize = "default" | "narrow" | "wide";
@@ -19,12 +19,12 @@ const sizeClasses = {
 export function Container({
   children,
   className,
-  as: Tag = "div",
+  as = "div",
   size = "default",
 }: ContainerProps) {
-  return (
-    <Tag className={cn("mx-auto w-full px-6 sm:px-8", sizeClasses[size], className)}>
-      {children}
-    </Tag>
+  return createElement(
+    as,
+    { className: cn("mx-auto w-full px-6 sm:px-8", sizeClasses[size], className) },
+    children,
   );
 }
