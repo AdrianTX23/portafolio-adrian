@@ -1,7 +1,7 @@
 "use client";
 
 import { Reveal } from "@/components/motion/reveal";
-import { SectionHeading } from "./section-heading";
+import { SectionHeading } from "@/components/shared/section-heading";
 
 const swatches = [
   { label: "background", className: "bg-background border-border border" },

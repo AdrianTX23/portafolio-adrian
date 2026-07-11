@@ -5,7 +5,7 @@ import { Magnetic } from "@/components/motion/magnetic";
 import { Reveal } from "@/components/motion/reveal";
 import { SpotlightCard } from "@/components/motion/spotlight-card";
 import { Button } from "@/components/ui/button";
-import { SectionHeading } from "./section-heading";
+import { SectionHeading } from "@/components/shared/section-heading";
 
 const levels = [
   { label: "elevation-1", className: "shadow-elevation-1" },

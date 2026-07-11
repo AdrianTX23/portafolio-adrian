@@ -3,7 +3,7 @@
 import { BlurImage } from "@/components/motion/blur-image";
 import { Reveal } from "@/components/motion/reveal";
 import { TiltCard } from "@/components/motion/tilt-card";
-import { SectionHeading } from "./section-heading";
+import { SectionHeading } from "@/components/shared/section-heading";
 
 export function InteractiveSection() {
   return (

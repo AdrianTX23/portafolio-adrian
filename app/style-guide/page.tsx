@@ -4,6 +4,7 @@ import { HeroIntro } from "./_sections/hero-intro";
 import { InteractiveSection } from "./_sections/interactive-section";
 import { MotionSection } from "./_sections/motion-section";
 import { PaletteSection } from "./_sections/palette-section";
+import { ProjectsPreviewSection } from "./_sections/projects-preview-section";
 import { TypographySection } from "./_sections/typography-section";
 
 export const metadata: Metadata = {
@@ -19,6 +20,7 @@ export default function StyleGuidePage() {
       <TypographySection />
       <ElevationSection />
       <InteractiveSection />
+      <ProjectsPreviewSection />
       <MotionSection />
     </main>
   );

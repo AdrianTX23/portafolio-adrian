@@ -3,7 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { DURATION, EASE_OUT_EXPO } from "@/lib/motion";
 import { Reveal } from "@/components/motion/reveal";
-import { SectionHeading } from "./section-heading";
+import { SectionHeading } from "@/components/shared/section-heading";
 
 const tracks = [
   { label: "fast", duration: DURATION.fast },
