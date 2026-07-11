@@ -5,6 +5,7 @@ export interface Experience {
   endDate: string | "present";
   location: string;
   description: string;
+  highlights: string[];
   stack: string[];
 }
 

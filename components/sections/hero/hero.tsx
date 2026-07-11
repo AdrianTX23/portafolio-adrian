@@ -1,0 +1,77 @@
+import { ArrowUpRight, Download, MapPin } from "lucide-react";
+import Link from "next/link";
+import { AuroraBackground } from "@/components/motion/aurora-background";
+import { Magnetic } from "@/components/motion/magnetic";
+import { Reveal } from "@/components/motion/reveal";
+import { TextReveal } from "@/components/motion/text-reveal";
+import { Button } from "@/components/ui/button";
+
+const stats = [
+  { label: "Años de experiencia", value: "3+" },
+  { label: "Proyectos entregados", value: "6" },
+  { label: "Nivel de inglés", value: "B2" },
+];
+
+export function Hero() {
+  return (
+    <section className="relative flex min-h-[92svh] flex-col justify-center overflow-hidden">
+      <AuroraBackground />
+
+      <div className="relative z-10 mx-auto w-full max-w-5xl px-6 text-center sm:px-8">
+        <Reveal>
+          <span className="border-border text-muted-foreground mb-6 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium">
+            <MapPin className="size-3.5" />
+            Barranquilla, Colombia · Frontend Software Engineer
+          </span>
+        </Reveal>
+
+        <TextReveal
+          as="h1"
+          text="Construyo productos digitales rápidos, escalables y cuidados al detalle."
+          className="text-display font-semibold text-balance"
+        />
+
+        <Reveal delay={0.3}>
+          <p className="text-lead text-muted-foreground mx-auto mt-6 max-w-2xl text-balance">
+            Ingeniero de Sistemas especializado en Next.js, React, TypeScript y
+            PostgreSQL — con experiencia real en soluciones empresariales, Power BI y
+            desarrollo frontend.
+          </p>
+        </Reveal>
+
+        <Reveal delay={0.42}>
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Magnetic>
+              <Button asChild className="shadow-glow bg-brand text-brand-foreground h-11 gap-2 rounded-full px-6 hover:opacity-90">
+                <Link href="#proyectos">
+                  Ver proyectos
+                  <ArrowUpRight className="size-4" />
+                </Link>
+              </Button>
+            </Magnetic>
+            <Magnetic>
+              <Button asChild variant="outline" className="h-11 gap-2 rounded-full px-6">
+                <a href="/cv.pdf" download>
+                  Descargar CV
+                  <Download className="size-4" />
+                </a>
+              </Button>
+            </Magnetic>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.55}>
+          <dl className="mt-16 grid grid-cols-3 gap-4">
+            {stats.map((stat) => (
+              <div key={stat.label}>
+                <dt className="sr-only">{stat.label}</dt>
+                <dd className="text-h3 font-semibold">{stat.value}</dd>
+                <p className="text-caption text-muted-foreground mt-1">{stat.label}</p>
+              </div>
+            ))}
+          </dl>
+        </Reveal>
+      </div>
+    </section>
+  );
+}

@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -223,6 +224,10 @@
   .mask-fade-edges {
     mask-image: radial-gradient(ellipse at center, black 55%, transparent 100%);
   }
+
+  .marquee-track {
+    animation: marquee-scroll var(--marquee-duration, 30s) linear infinite;
+  }
 }
 
 @keyframes aurora-drift {
@@ -238,8 +243,18 @@
   }
 }
 
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .aurora-blob {
+  .aurora-blob,
+  .marquee-track {
     animation: none;
   }
 }
