@@ -56,7 +56,23 @@ export function ContactChat() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(parsed.data),
       });
-      if (!res.ok) throw new Error("request-failed");
+      const data: { error?: string } | null = await res.json().catch(() => null);
+
+      if (!res.ok) {
+        const isRateLimited = res.status === 429;
+        setStatus(isRateLimited ? "idle" : "unavailable");
+        setMessages((prev) => [
+          ...prev,
+          {
+            id: `assistant-${Date.now()}`,
+            role: "assistant",
+            text:
+              data?.error ??
+              "El envío automático aún no está disponible — escríbeme directo a adrian-pico-28@hotmail.com mientras tanto.",
+          },
+        ]);
+        return;
+      }
 
       setStatus("sent");
       setMessages((prev) => [
