@@ -9,10 +9,44 @@ import { SkillsSection } from "@/components/sections/skills/skills-section";
 import { BigStatement } from "@/components/sections/statement/big-statement";
 import { TechnologiesSection } from "@/components/sections/technologies/technologies-section";
 import { TimelineSection } from "@/components/sections/timeline/timeline-section";
+import { SOCIAL_LINKS } from "@/lib/nav-links";
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Adrián Pico Martínez",
+  jobTitle: "Ingeniero de Sistemas · Frontend Software Engineer",
+  url: siteUrl,
+  email: `mailto:${SOCIAL_LINKS.email}`,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Barranquilla",
+    addressCountry: "CO",
+  },
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: "Universidad Simón Bolívar",
+  },
+  knowsAbout: [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "PostgreSQL",
+    "Power BI",
+    "Desarrollo Full Stack",
+  ],
+  sameAs: [SOCIAL_LINKS.github, SOCIAL_LINKS.linkedin],
+};
 
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+      />
       <Hero />
       <About />
       <ExperienceSection />

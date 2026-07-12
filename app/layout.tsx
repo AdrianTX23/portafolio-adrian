@@ -24,18 +24,42 @@ const geistMono = Geist_Mono({
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
+const description =
+  "Ingeniero de Sistemas especializado en desarrollo Full Stack moderno con Next.js, React, TypeScript y PostgreSQL.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default: "Adrián Pico Martínez — Ingeniero de Sistemas",
     template: "%s · Adrián Pico Martínez",
   },
-  description:
-    "Ingeniero de Sistemas especializado en desarrollo Full Stack moderno con Next.js, React, TypeScript y PostgreSQL.",
+  description,
+  keywords: [
+    "Adrián Pico Martínez",
+    "Ingeniero de Sistemas",
+    "Frontend Software Engineer",
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Desarrollador Full Stack",
+    "Barranquilla",
+  ],
+  authors: [{ name: "Adrián Pico Martínez", url: siteUrl }],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     locale: "es_ES",
     siteName: "Adrián Pico Martínez",
+    title: "Adrián Pico Martínez — Ingeniero de Sistemas",
+    description,
+    url: siteUrl,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Adrián Pico Martínez — Ingeniero de Sistemas",
+    description,
   },
   robots: {
     index: true,
