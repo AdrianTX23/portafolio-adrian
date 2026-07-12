@@ -3,7 +3,7 @@ import { Reveal } from "@/components/motion/reveal";
 import { Section } from "@/components/shared/section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { SOCIAL_LINKS } from "@/lib/nav-links";
-import { ContactChat } from "./contact-chat";
+import { ContactForm } from "./contact-form";
 
 export function ContactSection() {
   return (
@@ -14,7 +14,7 @@ export function ContactSection() {
         description="Respondo personalmente cada mensaje — cuéntame qué necesitas y te contacto a la brevedad."
       />
       <Reveal>
-        <ContactChat />
+        <ContactForm />
       </Reveal>
       <Reveal delay={0.1}>
         <div className="text-muted-foreground mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm">
