@@ -1,44 +1,39 @@
-import { GraduationCap, Milestone, Briefcase } from "lucide-react";
 import { Reveal } from "@/components/motion/reveal";
 import { Section } from "@/components/shared/section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { timeline } from "@/content/data/timeline";
 import type { TimelineEvent } from "@/types/experience";
-import { TimelineTrack } from "./timeline-track";
 
-const typeIcons: Record<TimelineEvent["type"], typeof Briefcase> = {
-  work: Briefcase,
-  education: GraduationCap,
-  milestone: Milestone,
+const typeLabels: Record<TimelineEvent["type"], string> = {
+  work: "Experiencia laboral",
+  education: "Educación",
+  milestone: "Hito",
 };
 
 export function TimelineSection() {
   return (
     <Section id="timeline" spacing="sm" containerSize="narrow">
       <SectionHeading eyebrow="Recorrido" title="Timeline profesional" />
-      <TimelineTrack>
-        <ul className="space-y-10">
-          {timeline.map((event, i) => {
-            const Icon = typeIcons[event.type];
-            return (
-              <Reveal key={event.title} delay={i * 0.08} as="li">
-                <div className="relative">
-                  <span className="bg-brand text-brand-foreground absolute top-0.5 -left-8 flex size-6 items-center justify-center rounded-full">
-                    <Icon className="size-3.5" />
-                  </span>
-                  <p className="text-caption text-muted-foreground font-mono uppercase">
-                    {event.date}
-                  </p>
-                  <h3 className="mt-1 font-semibold">{event.title}</h3>
-                  <p className="text-muted-foreground mt-1 text-sm">
-                    {event.description}
-                  </p>
-                </div>
-              </Reveal>
-            );
-          })}
-        </ul>
-      </TimelineTrack>
+      <div>
+        {timeline.map((event, i) => (
+          <Reveal key={event.title} delay={i * 0.08}>
+            <div className="border-border grid grid-cols-[1fr_auto] items-start gap-6 border-b py-8 first:pt-0 last:border-0">
+              <div>
+                <h3 className="text-h3 font-semibold">{event.title}</h3>
+                <p className="text-brand mt-1 text-sm font-medium">
+                  {typeLabels[event.type]}
+                </p>
+                <p className="text-muted-foreground mt-3 max-w-md text-sm">
+                  {event.description}
+                </p>
+              </div>
+              <p className="text-h1 text-muted-foreground/25 font-bold tabular-nums">
+                {event.date.slice(0, 4)}
+              </p>
+            </div>
+          </Reveal>
+        ))}
+      </div>
     </Section>
   );
 }

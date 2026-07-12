@@ -7,9 +7,10 @@ import type { Project } from "@/types/project";
 
 interface ProjectCardProps {
   project: Project;
+  index?: number;
 }
 
-export function ProjectCard({ project }: ProjectCardProps) {
+export function ProjectCard({ project, index }: ProjectCardProps) {
   const imageContent = (
     <TiltCard className="overflow-hidden rounded-t-2xl">
       <div className="bg-muted relative aspect-video">
@@ -49,7 +50,14 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
       <div className="p-6">
         <div className="mb-2 flex items-center justify-between gap-4">
-          <h3 className="text-h3 font-semibold">{project.title}</h3>
+          <h3 className="text-h3 flex items-center gap-2 font-semibold">
+            {typeof index === "number" && (
+              <span className="text-brand font-mono text-sm font-normal">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+            )}
+            {project.title}
+          </h3>
           <span className="text-muted-foreground text-caption font-mono">
             {project.year}
           </span>
