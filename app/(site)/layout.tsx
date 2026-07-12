@@ -8,7 +8,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
   return (
     <SmoothScrollProvider>
       <Navbar />
-      <main>
+      <main className="pt-24">
         <PageTransition>{children}</PageTransition>
       </main>
       <Footer />

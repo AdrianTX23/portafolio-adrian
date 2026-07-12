@@ -9,17 +9,17 @@ interface CountUpProps {
   duration?: number;
 }
 
-function parseValue(value: string): { number: number; suffix: string } {
-  const match = value.match(/^(\d+)(.*)$/);
-  if (!match?.[1]) return { number: 0, suffix: value };
-  return { number: parseInt(match[1], 10), suffix: match[2] ?? "" };
+function parseValue(value: string): { prefix: string; number: number; suffix: string } {
+  const match = value.match(/^(\D*)(\d+)(.*)$/);
+  if (!match?.[2]) return { prefix: value, number: 0, suffix: "" };
+  return { prefix: match[1] ?? "", number: parseInt(match[2], 10), suffix: match[3] ?? "" };
 }
 
 export function CountUp({ value, className, duration = 1.8 }: CountUpProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-10% 0px" });
   const shouldReduceMotion = useReducedMotion();
-  const { number, suffix } = parseValue(value);
+  const { prefix, number, suffix } = parseValue(value);
   const [display, setDisplay] = useState(shouldReduceMotion ? number : 0);
 
   useEffect(() => {
@@ -56,6 +56,7 @@ export function CountUp({ value, className, duration = 1.8 }: CountUpProps) {
       animate={isInView ? { opacity: 1, y: 0 } : undefined}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
     >
+      {prefix}
       {display}
       {suffix}
     </motion.span>
