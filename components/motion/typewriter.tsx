@@ -55,10 +55,10 @@ export function Typewriter({
   }
 
   return (
-    <span className={className}>
-      {text}
-      <span aria-hidden="true" className="animate-pulse">
-        _
+    <span className={className} aria-label={phrases[index % phrases.length]}>
+      <span aria-hidden="true">
+        {text}
+        <span className="animate-pulse">_</span>
       </span>
     </span>
   );

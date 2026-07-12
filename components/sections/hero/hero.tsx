@@ -1,8 +1,6 @@
 import { MapPin } from "lucide-react";
 import { Reveal } from "@/components/motion/reveal";
-import { TextReveal } from "@/components/motion/text-reveal";
 import { Typewriter } from "@/components/motion/typewriter";
-import { HeroCanvas } from "./hero-canvas";
 import { HeroScrollFade } from "./hero-scroll-fade";
 
 const stats = [
@@ -10,6 +8,8 @@ const stats = [
   { label: "Proyectos entregados", value: "6" },
   { label: "Nivel de inglés", value: "B2" },
 ];
+
+const headline = ["Convierto problemas complejos en productos simples."];
 
 const taglines = [
   "construyendo interfaces rápidas.",
@@ -21,8 +21,6 @@ const taglines = [
 export function Hero() {
   return (
     <section className="relative flex min-h-[92svh] flex-col justify-center overflow-hidden">
-      <HeroCanvas />
-
       <HeroScrollFade>
         <Reveal>
           <span className="border-border text-muted-foreground mb-6 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium">
@@ -31,11 +29,9 @@ export function Hero() {
           </span>
         </Reveal>
 
-        <TextReveal
-          as="h1"
-          text="Construyo productos digitales rápidos, escalables y cuidados al detalle."
-          className="text-display font-semibold text-balance"
-        />
+        <h1 className="text-display font-semibold text-balance">
+          <Typewriter phrases={headline} />
+        </h1>
 
         <Reveal delay={0.26}>
           <p className="text-muted-foreground mt-5 font-mono text-sm">
