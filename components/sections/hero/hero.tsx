@@ -1,10 +1,7 @@
-import { ArrowUpRight, Download, MapPin } from "lucide-react";
-import Link from "next/link";
-import { Magnetic } from "@/components/motion/magnetic";
+import { MapPin } from "lucide-react";
 import { Reveal } from "@/components/motion/reveal";
 import { TextReveal } from "@/components/motion/text-reveal";
 import { Typewriter } from "@/components/motion/typewriter";
-import { Button } from "@/components/ui/button";
 import { HeroCanvas } from "./hero-canvas";
 import { HeroScrollFade } from "./hero-scroll-fade";
 
@@ -54,29 +51,8 @@ export function Hero() {
           </p>
         </Reveal>
 
-        <Reveal delay={0.42}>
-          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Magnetic>
-              <Button asChild className="shadow-glow bg-brand text-brand-foreground h-11 gap-2 rounded-full px-6 hover:opacity-90">
-                <Link href="#proyectos">
-                  Ver proyectos
-                  <ArrowUpRight className="size-4" />
-                </Link>
-              </Button>
-            </Magnetic>
-            <Magnetic>
-              <Button asChild variant="outline" className="h-11 gap-2 rounded-full px-6">
-                <a href="/cv.pdf" download>
-                  Descargar CV
-                  <Download className="size-4" />
-                </a>
-              </Button>
-            </Magnetic>
-          </div>
-        </Reveal>
-
-        <Reveal delay={0.55}>
-          <dl className="mt-16 grid grid-cols-3 gap-4">
+        <Reveal delay={0.5}>
+          <dl className="mt-14 grid grid-cols-3 gap-4">
             {stats.map((stat) => (
               <div key={stat.label}>
                 <dt className="sr-only">{stat.label}</dt>
