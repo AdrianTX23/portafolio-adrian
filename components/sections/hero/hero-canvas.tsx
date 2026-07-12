@@ -35,7 +35,7 @@ export function HeroCanvas() {
     <div
       ref={ref}
       aria-hidden="true"
-      className="pointer-events-none absolute inset-0 opacity-70 mix-blend-screen dark:opacity-90"
+      className="pointer-events-none absolute inset-0 opacity-50 dark:opacity-80"
     >
       {shouldRender && isVisible && <HeroScene />}
     </div>

@@ -21,7 +21,7 @@ export function BigStatement({ parts }: BigStatementProps) {
             const text = isString ? part : part.text;
             const strong = !isString && part.strong;
             return (
-              <span key={i} className={cn(strong && "text-gradient-brand")}>
+              <span key={i} className={cn(strong && "text-brand-accent")}>
                 {text}
               </span>
             );

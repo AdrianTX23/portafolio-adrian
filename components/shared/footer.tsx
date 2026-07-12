@@ -2,7 +2,6 @@
 
 import { ArrowUp, ArrowUpRight, Mail } from "lucide-react";
 import Link from "next/link";
-import { AuroraBackground } from "@/components/motion/aurora-background";
 import { Magnetic } from "@/components/motion/magnetic";
 import { Reveal } from "@/components/motion/reveal";
 import { TextReveal } from "@/components/motion/text-reveal";
@@ -23,15 +22,14 @@ export function Footer() {
 
   return (
     <footer className="border-border border-t">
-      <div className="relative overflow-hidden py-section-sm text-center">
-        <AuroraBackground className="opacity-60" />
-        <Container size="narrow" className="relative z-10">
+      <div className="py-section-sm text-center">
+        <Container size="narrow">
           <Reveal>
             <TextReveal
               as="p"
               text="¿Construimos algo juntos?"
               className="text-h1 font-semibold text-balance"
-              wordClassName="text-gradient-brand"
+              wordClassName="text-brand-accent"
             />
           </Reveal>
           <Reveal delay={0.15}>

@@ -91,15 +91,11 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
 
-  --brand-lch: 0.58 0.19 262;
+  --brand-lch: 0.5 0.19 258;
   --brand: oklch(var(--brand-lch));
   --brand-foreground: oklch(0.99 0 0);
   --brand-muted: oklch(var(--brand-lch) / 10%);
   --brand-border: oklch(var(--brand-lch) / 35%);
-
-  --aurora-1: oklch(0.62 0.19 262);
-  --aurora-2: oklch(0.68 0.2 300);
-  --aurora-3: oklch(0.72 0.15 220);
 
   --elevation-1:
     0 1px 2px oklch(0 0 0 / 4%),
@@ -116,7 +112,7 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
+  --background: oklch(0 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
@@ -148,9 +144,9 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 
-  --brand-lch: 0.7 0.17 262;
+  --brand-lch: 0.58 0.2 258;
   --brand: oklch(var(--brand-lch));
-  --brand-foreground: oklch(0.12 0 0);
+  --brand-foreground: oklch(0.99 0 0);
   --brand-muted: oklch(var(--brand-lch) / 16%);
   --brand-border: oklch(var(--brand-lch) / 40%);
 
@@ -212,15 +208,6 @@
 }
 
 @layer components {
-  .aurora-blob {
-    position: absolute;
-    border-radius: 9999px;
-    filter: blur(80px);
-    opacity: 0.55;
-    will-change: transform;
-    animation: aurora-drift 22s ease-in-out infinite;
-  }
-
   .mask-fade-edges {
     mask-image: radial-gradient(ellipse at center, black 55%, transparent 100%);
   }
@@ -229,24 +216,8 @@
     animation: marquee-scroll var(--marquee-duration, 30s) linear infinite;
   }
 
-  .text-gradient-brand {
-    background-image: linear-gradient(90deg, var(--brand), var(--aurora-2));
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-  }
-}
-
-@keyframes aurora-drift {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  33% {
-    transform: translate3d(4%, -6%, 0) scale(1.08);
-  }
-  66% {
-    transform: translate3d(-3%, 4%, 0) scale(0.96);
+  .text-brand-accent {
+    color: var(--brand);
   }
 }
 
@@ -260,7 +231,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .aurora-blob,
   .marquee-track {
     animation: none;
   }

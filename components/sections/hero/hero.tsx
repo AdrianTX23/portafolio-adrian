@@ -1,8 +1,6 @@
 import { ArrowUpRight, Download, MapPin } from "lucide-react";
 import Link from "next/link";
-import { AuroraBackground } from "@/components/motion/aurora-background";
 import { Magnetic } from "@/components/motion/magnetic";
-import { Parallax } from "@/components/motion/parallax";
 import { Reveal } from "@/components/motion/reveal";
 import { TextReveal } from "@/components/motion/text-reveal";
 import { Typewriter } from "@/components/motion/typewriter";
@@ -26,9 +24,6 @@ const taglines = [
 export function Hero() {
   return (
     <section className="relative flex min-h-[92svh] flex-col justify-center overflow-hidden">
-      <Parallax speed={0.15} className="absolute inset-0">
-        <AuroraBackground />
-      </Parallax>
       <HeroCanvas />
 
       <HeroScrollFade>

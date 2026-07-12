@@ -21,7 +21,7 @@ function FloatingBlob() {
       <mesh ref={meshRef}>
         <icosahedronGeometry args={[1.4, 4]} />
         <MeshDistortMaterial
-          color="#6d5bff"
+          color="#3454d1"
           distort={0.35}
           speed={1.4}
           roughness={0.25}

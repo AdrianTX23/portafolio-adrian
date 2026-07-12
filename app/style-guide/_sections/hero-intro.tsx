@@ -1,6 +1,5 @@
 "use client";
 
-import { AuroraBackground } from "@/components/motion/aurora-background";
 import { Reveal } from "@/components/motion/reveal";
 import { TextReveal } from "@/components/motion/text-reveal";
 import { ThemeToggle } from "@/components/shared/theme-toggle";
@@ -8,8 +7,6 @@ import { ThemeToggle } from "@/components/shared/theme-toggle";
 export function HeroIntro() {
   return (
     <header className="relative flex min-h-[70svh] flex-col justify-between overflow-hidden px-6 pt-6 pb-16">
-      <AuroraBackground />
-
       <div className="relative z-10 flex items-center justify-between">
         <span className="text-caption text-muted-foreground font-mono">
           adrianpico.dev
