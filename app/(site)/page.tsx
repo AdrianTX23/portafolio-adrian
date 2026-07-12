@@ -1,5 +1,6 @@
 import { About } from "@/components/sections/about/about";
 import { BlogTeaserSection } from "@/components/sections/blog/blog-teaser-section";
+import { ContactCtaBanner } from "@/components/sections/contact/contact-cta-banner";
 import { ContactSection } from "@/components/sections/contact/contact-section";
 import { ExperienceSection } from "@/components/sections/experience/experience-section";
 import { Hero } from "@/components/sections/hero/hero";
@@ -57,6 +58,7 @@ export default function HomePage() {
       <ProjectsSection />
       <TimelineSection />
       <BlogTeaserSection />
+      <ContactCtaBanner />
       <ContactSection />
     </>
   );
