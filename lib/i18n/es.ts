@@ -19,9 +19,15 @@ export const es = {
   languageToggle: {
     ariaLabel: "Cambiar idioma",
   },
+  logo: {
+    label: "Portafolio",
+    ariaLabel: "Portafolio de Adrián Pico Martínez — inicio",
+  },
   hero: {
     location: "Barranquilla, Colombia",
     role: "Frontend Software Engineer",
+    greeting: "¡Saludos!",
+    intro: "Soy Adrián Pico",
     headline: "Convierto problemas complejos en productos simples.",
     taglines: [
       "construyendo interfaces rápidas.",
@@ -31,8 +37,6 @@ export const es = {
     ],
     description:
       "Ingeniero de Sistemas especializado en Next.js, React, TypeScript y PostgreSQL — con experiencia real en soluciones empresariales, Power BI y desarrollo frontend.",
-    downloadCv: "Descargar CV",
-    aboutMe: "Sobre mí",
     stats: {
       experience: "Años de experiencia",
       projects: "Proyectos entregados",

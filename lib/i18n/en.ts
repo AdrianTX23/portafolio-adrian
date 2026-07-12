@@ -21,9 +21,15 @@ export const en: typeof es = {
   languageToggle: {
     ariaLabel: "Switch language",
   },
+  logo: {
+    label: "Portfolio",
+    ariaLabel: "Adrián Pico Martínez's portfolio — home",
+  },
   hero: {
     location: "Barranquilla, Colombia",
     role: "Frontend Software Engineer",
+    greeting: "Hello!",
+    intro: "I'm Adrián Pico",
     headline: "I turn complex problems into simple products.",
     taglines: [
       "building fast interfaces.",
@@ -33,8 +39,6 @@ export const en: typeof es = {
     ],
     description:
       "Systems Engineer specialized in Next.js, React, TypeScript, and PostgreSQL — with real experience in enterprise solutions, Power BI, and frontend development.",
-    downloadCv: "Download CV",
-    aboutMe: "About me",
     stats: {
       experience: "Years of experience",
       projects: "Projects delivered",

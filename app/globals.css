@@ -239,6 +239,12 @@
     animation: marquee-scroll var(--marquee-duration, 30s) linear infinite;
   }
 
+  .animate-wave {
+    display: inline-block;
+    transform-origin: 70% 70%;
+    animation: wave-hand 2.4s ease-in-out infinite;
+  }
+
   .text-brand-accent {
     color: var(--brand);
   }
@@ -309,6 +315,27 @@
   }
 }
 
+@keyframes wave-hand {
+  0%,
+  60%,
+  100% {
+    transform: rotate(0deg);
+  }
+  10%,
+  30% {
+    transform: rotate(16deg);
+  }
+  20% {
+    transform: rotate(-8deg);
+  }
+  40% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+}
+
 @keyframes marquee-scroll {
   from {
     transform: translateX(0);
@@ -354,7 +381,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .marquee-track {
+  .marquee-track,
+  .animate-wave {
     animation: none;
   }
 }
