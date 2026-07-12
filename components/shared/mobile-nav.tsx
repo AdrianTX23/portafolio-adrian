@@ -5,6 +5,7 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useLocale } from "@/components/providers/locale-provider";
+import { NAV_ICONS } from "@/components/shared/navbar";
 import { Button } from "@/components/ui/button";
 import { EASE_OUT_EXPO, staggerContainer } from "@/lib/motion";
 import { NAV_LINKS } from "@/lib/nav-links";
@@ -74,17 +75,21 @@ export function MobileNav() {
               variants={staggerContainer(0.07, 0.05)}
               className="flex flex-1 flex-col items-center justify-center gap-6"
             >
-              {NAV_LINKS.map((link) => (
-                <motion.div key={link.href} variants={linkVariants}>
-                  <Link
-                    href={link.href}
-                    onClick={() => setOpen(false)}
-                    className="hover:text-brand text-3xl font-semibold transition-colors"
-                  >
-                    {t.nav[link.key]}
-                  </Link>
-                </motion.div>
-              ))}
+              {NAV_LINKS.map((link) => {
+                const Icon = NAV_ICONS[link.key];
+                return (
+                  <motion.div key={link.href} variants={linkVariants}>
+                    <Link
+                      href={link.href}
+                      onClick={() => setOpen(false)}
+                      className="group hover:text-brand inline-flex items-center gap-3 text-3xl font-semibold transition-colors"
+                    >
+                      <Icon className="text-brand size-6 transition-transform duration-300 ease-out group-hover:-rotate-12 group-hover:scale-125" />
+                      {t.nav[link.key]}
+                    </Link>
+                  </motion.div>
+                );
+              })}
             </motion.nav>
           </motion.div>
         )}

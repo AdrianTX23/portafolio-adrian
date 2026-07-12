@@ -2,14 +2,32 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
+import {
+  Briefcase,
+  FileText,
+  FolderGit2,
+  Mail,
+  PenLine,
+  User,
+  type LucideIcon,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 import { useLocale } from "@/components/providers/locale-provider";
 import { LanguageToggle } from "@/components/shared/language-toggle";
 import { Logo } from "@/components/shared/logo";
 import { MobileNav } from "@/components/shared/mobile-nav";
 import { ThemeToggle } from "@/components/shared/theme-toggle";
-import { NAV_LINKS } from "@/lib/nav-links";
+import { NAV_LINKS, type NavLink } from "@/lib/nav-links";
 import { cn } from "@/lib/utils";
+
+export const NAV_ICONS: Record<NavLink["key"], LucideIcon> = {
+  about: User,
+  experience: Briefcase,
+  cv: FileText,
+  projects: FolderGit2,
+  blog: PenLine,
+  contact: Mail,
+};
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -43,15 +61,19 @@ export function Navbar() {
         </div>
 
         <div className="hidden items-center gap-1 md:flex">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-muted-foreground hover:text-foreground rounded-full px-3.5 py-1.5 text-xs font-medium tracking-wide transition-colors duration-200 hover:bg-white/5"
-            >
-              {t.nav[link.key]}
-            </Link>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const Icon = NAV_ICONS[link.key];
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="group text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium tracking-wide transition-colors duration-200 hover:bg-white/5"
+              >
+                <Icon className="group-hover:text-brand size-3.5 transition-transform duration-300 ease-out group-hover:-rotate-12 group-hover:scale-125" />
+                {t.nav[link.key]}
+              </Link>
+            );
+          })}
         </div>
 
         <div className="flex items-center gap-0.5 pr-1">
