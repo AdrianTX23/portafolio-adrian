@@ -1,15 +1,15 @@
 export interface NavLink {
-  label: string;
+  key: "about" | "experience" | "cv" | "projects" | "blog" | "contact";
   href: string;
 }
 
 export const NAV_LINKS: NavLink[] = [
-  { label: "Sobre mí", href: "/#sobre-mi" },
-  { label: "Experiencia", href: "/#experiencia" },
-  { label: "CV", href: "/#cv" },
-  { label: "Proyectos", href: "/proyectos" },
-  { label: "Blog", href: "/blog" },
-  { label: "Contacto", href: "/#contacto" },
+  { key: "about", href: "/#sobre-mi" },
+  { key: "experience", href: "/#experiencia" },
+  { key: "cv", href: "/#cv" },
+  { key: "projects", href: "/proyectos" },
+  { key: "blog", href: "/blog" },
+  { key: "contact", href: "/#contacto" },
 ];
 
 export const SOCIAL_LINKS = {

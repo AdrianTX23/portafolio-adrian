@@ -1,36 +1,27 @@
+"use client";
+
 import { GraduationCap, Languages, MapPin } from "lucide-react";
 import { Reveal } from "@/components/motion/reveal";
 import { SpotlightCard } from "@/components/motion/spotlight-card";
+import { useLocale } from "@/components/providers/locale-provider";
 import { Section } from "@/components/shared/section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 
-const facts = [
-  {
-    icon: MapPin,
-    label: "Ubicación",
-    value: "Barranquilla, Colombia",
-  },
-  {
-    icon: GraduationCap,
-    label: "Educación",
-    value: "Ingeniería de Sistemas · Universidad Simón Bolívar (2023)",
-  },
-  {
-    icon: Languages,
-    label: "Inglés",
-    value: "Nivel B2 — equipos y documentación internacional",
-  },
-];
-
-const certifications = ["Power BI Avanzado · Udemy", "Excel Avanzado · Grupo Ninja"];
-
 export function About() {
+  const { t } = useLocale();
+
+  const facts = [
+    { icon: MapPin, ...t.about.facts.location },
+    { icon: GraduationCap, ...t.about.facts.education },
+    { icon: Languages, ...t.about.facts.english },
+  ];
+
   return (
     <Section id="sobre-mi">
       <div className="section-divider mb-section-sm" />
-      <SectionHeading eyebrow="Sobre mí" title="La persona detrás del código" />
+      <SectionHeading eyebrow={t.about.eyebrow} title={t.about.title} />
 
       <SpotlightCard className="glass-card rounded-3xl p-8 sm:p-10 lg:p-12">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[auto_1fr]">
@@ -45,21 +36,9 @@ export function About() {
           <div className="space-y-8">
             <Reveal delay={0.1}>
               <div className="text-muted-foreground space-y-5 text-base leading-relaxed">
-                <p>
-                  Ingeniero de Sistemas graduado de la Universidad Simón Bolívar con
-                  experiencia en desarrollo de aplicaciones web utilizando React,
-                  JavaScript, TypeScript, HTML5, CSS3 y .NET. He participado en
-                  proyectos empresariales para SIGPE Consultores y BIG SAS,
-                  desarrollando soluciones de software, administrando bases de datos
-                  MySQL y construyendo reportes analíticos con Power BI.
-                </p>
-                <p>
-                  Me apasiona desarrollar aplicaciones modernas, intuitivas y
-                  escalables, enfocadas en ofrecer una excelente experiencia de
-                  usuario. Aprendo rápidamente nuevas tecnologías, disfruto trabajar
-                  en equipos multidisciplinarios y busco aportar soluciones que
-                  generen valor al negocio.
-                </p>
+                {t.about.bio.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
               </div>
             </Reveal>
 
@@ -82,7 +61,7 @@ export function About() {
 
             <Reveal delay={0.3}>
               <div className="flex flex-wrap gap-2">
-                {certifications.map((cert) => (
+                {t.about.certifications.map((cert) => (
                   <Badge
                     key={cert}
                     variant="secondary"

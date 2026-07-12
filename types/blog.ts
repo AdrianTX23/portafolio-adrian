@@ -1,9 +1,11 @@
+import type { Localized } from "@/lib/i18n/types";
+
 export interface BlogPostMeta {
   slug: string;
-  title: string;
-  description: string;
+  title: Localized<string>;
+  description: Localized<string>;
   date: string;
-  tags: string[];
+  tags: Localized<string[]>;
   coverImage?: string;
-  readingTime: string;
+  readingTime: Localized<string>;
 }

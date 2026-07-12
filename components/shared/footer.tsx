@@ -6,6 +6,7 @@ import { AmbientMesh } from "@/components/motion/ambient-mesh";
 import { Magnetic } from "@/components/motion/magnetic";
 import { Reveal } from "@/components/motion/reveal";
 import { TextReveal } from "@/components/motion/text-reveal";
+import { useLocale } from "@/components/providers/locale-provider";
 import { Container } from "@/components/shared/container";
 import { GithubIcon, LinkedinIcon } from "@/components/shared/icons";
 import { Logo } from "@/components/shared/logo";
@@ -20,6 +21,7 @@ const socials = [
 
 export function Footer() {
   const year = new Date().getFullYear();
+  const { t } = useLocale();
 
   return (
     <footer className="relative overflow-hidden">
@@ -29,14 +31,14 @@ export function Footer() {
           <Reveal>
             <TextReveal
               as="p"
-              text="¿Construimos algo juntos?"
+              text={t.footer.heading}
               className="font-heading text-h1 font-semibold tracking-tight text-balance"
               wordClassName="gradient-text"
             />
           </Reveal>
           <Reveal delay={0.15}>
             <p className="text-muted-foreground mx-auto mt-5 max-w-md text-lead">
-              Siempre abierto a hablar de nuevos proyectos, roles o ideas.
+              {t.footer.description}
             </p>
           </Reveal>
           <Reveal delay={0.25}>
@@ -47,7 +49,7 @@ export function Footer() {
                   className="shadow-glow bg-brand text-brand-foreground h-12 gap-2 rounded-full px-8 text-sm font-medium hover:opacity-90"
                 >
                   <Link href="#contacto">
-                    Escríbeme
+                    {t.footer.writeToMe}
                     <ArrowUpRight className="size-4" />
                   </Link>
                 </Button>
@@ -84,7 +86,7 @@ export function Footer() {
       <Container className="flex flex-col items-center gap-4 py-8 sm:flex-row sm:justify-between">
         <Logo />
         <p className="text-muted-foreground text-caption tracking-wide">
-          © {year} Adrián Pico Martínez. Todos los derechos reservados.
+          © {year} Adrián Pico Martínez. {t.footer.rights}
         </p>
         <Button
           variant="ghost"
@@ -92,7 +94,7 @@ export function Footer() {
           className="glass gap-1.5 rounded-full border border-white/10 px-4"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
-          Volver arriba
+          {t.footer.backToTop}
           <ArrowUp className="size-3.5" />
         </Button>
       </Container>

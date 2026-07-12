@@ -1,7 +1,10 @@
+"use client";
+
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Magnetic } from "@/components/motion/magnetic";
 import { Reveal } from "@/components/motion/reveal";
+import { useLocale } from "@/components/providers/locale-provider";
 import { Section } from "@/components/shared/section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { Button } from "@/components/ui/button";
@@ -10,22 +13,24 @@ import { ProjectCard } from "./project-card";
 import { ProjectsHorizontal } from "./projects-horizontal";
 
 export function ProjectsSection() {
+  const { t } = useLocale();
   const featured = projects.filter((project) => project.featured);
+  const list = featured.length > 0 ? featured : projects;
 
   return (
     <Section id="proyectos" variant="muted" containerSize="wide" className="!px-0 lg:!px-0">
       <div className="px-6 sm:px-8 lg:mx-auto lg:max-w-7xl">
         <SectionHeading
-          eyebrow="Portafolio"
-          title="Proyectos destacados"
-          description="Una muestra de productos que he construido de principio a fin — de la interfaz a la base de datos."
+          eyebrow={t.projects.eyebrow}
+          title={t.projects.title}
+          description={t.projects.description}
         />
       </div>
 
-      <ProjectsHorizontal projects={featured.length > 0 ? featured : projects} />
+      <ProjectsHorizontal projects={list} />
 
       <div className="grid grid-cols-1 gap-6 px-6 sm:px-8 lg:hidden lg:max-w-7xl">
-        {(featured.length > 0 ? featured : projects).map((project, i) => (
+        {list.map((project, i) => (
           <Reveal key={project.slug} delay={i * 0.08}>
             <ProjectCard project={project} index={i} />
           </Reveal>
@@ -41,7 +46,7 @@ export function ProjectsSection() {
               className="glass h-11 gap-2 rounded-full border-white/10 px-6 text-sm font-medium"
             >
               <Link href="/proyectos">
-                Ver todos los proyectos
+                {t.projects.viewAllProjects}
                 <ArrowRight className="size-4" />
               </Link>
             </Button>

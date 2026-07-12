@@ -3,10 +3,12 @@
 import { Send } from "lucide-react";
 import { useState, type FormEvent } from "react";
 import { Magnetic } from "@/components/motion/magnetic";
+import { useLocale } from "@/components/providers/locale-provider";
 import { Button } from "@/components/ui/button";
 import { SOCIAL_LINKS } from "@/lib/nav-links";
 
 export function ContactForm() {
+  const { t } = useLocale();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -14,7 +16,7 @@ export function ContactForm() {
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
 
-    const subject = `Contacto desde el portafolio — ${name}`;
+    const subject = `${t.contact.subjectPrefix} — ${name}`;
     const body = `${message}\n\n—\n${name}\n${email}`;
     const mailto = `mailto:${SOCIAL_LINKS.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
@@ -29,7 +31,7 @@ export function ContactForm() {
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <input
           type="text"
-          placeholder="Tu nombre"
+          placeholder={t.contact.namePlaceholder}
           value={name}
           onChange={(e) => setName(e.target.value)}
           className="bg-background/50 focus-visible:ring-brand/50 h-12 rounded-xl border border-white/10 px-4 text-sm outline-none transition-colors focus-visible:ring-2"
@@ -37,7 +39,7 @@ export function ContactForm() {
         />
         <input
           type="email"
-          placeholder="Tu correo"
+          placeholder={t.contact.emailPlaceholder}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           className="bg-background/50 focus-visible:ring-brand/50 h-12 rounded-xl border border-white/10 px-4 text-sm outline-none transition-colors focus-visible:ring-2"
@@ -45,7 +47,7 @@ export function ContactForm() {
         />
       </div>
       <textarea
-        placeholder="Cuéntame en qué puedo ayudarte..."
+        placeholder={t.contact.messagePlaceholder}
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         rows={5}
@@ -59,13 +61,11 @@ export function ContactForm() {
             type="submit"
             className="shadow-glow bg-brand text-brand-foreground h-12 gap-2 rounded-full px-7 text-sm font-medium hover:opacity-90"
           >
-            Enviar mensaje
+            {t.contact.send}
             <Send className="size-4" />
           </Button>
         </Magnetic>
-        <p className="text-muted-foreground text-caption">
-          Se abrirá tu cliente de correo con el mensaje ya redactado.
-        </p>
+        <p className="text-muted-foreground text-caption">{t.contact.sendNote}</p>
       </div>
     </form>
   );

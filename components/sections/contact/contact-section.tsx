@@ -1,17 +1,22 @@
+"use client";
+
 import { Mail, MapPin } from "lucide-react";
 import { Reveal } from "@/components/motion/reveal";
+import { useLocale } from "@/components/providers/locale-provider";
 import { Section } from "@/components/shared/section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { SOCIAL_LINKS } from "@/lib/nav-links";
 import { ContactForm } from "./contact-form";
 
 export function ContactSection() {
+  const { t } = useLocale();
+
   return (
     <Section id="contacto" containerSize="narrow">
       <SectionHeading
-        eyebrow="Contacto"
-        title="Hablemos de tu próximo proyecto"
-        description="Respondo personalmente cada mensaje — cuéntame qué necesitas y te contacto a la brevedad."
+        eyebrow={t.contact.eyebrow}
+        title={t.contact.title}
+        description={t.contact.description}
       />
       <Reveal>
         <ContactForm />
@@ -27,7 +32,7 @@ export function ContactSection() {
           </a>
           <span className="flex items-center gap-1.5">
             <MapPin className="size-4" />
-            Barranquilla, Colombia
+            {t.contact.location}
           </span>
         </div>
       </Reveal>

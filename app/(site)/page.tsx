@@ -52,13 +52,7 @@ export default function HomePage() {
       <ExperienceSection />
       <ResumeSection />
       <SkillsSection />
-      <BigStatement
-        parts={[
-          "Tengo una obsesión real por los ",
-          { text: "detalles", strong: true },
-          " que nadie más nota.",
-        ]}
-      />
+      <BigStatement />
       <TechnologiesSection />
       <ProjectsSection />
       <TimelineSection />

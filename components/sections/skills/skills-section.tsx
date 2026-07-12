@@ -1,16 +1,13 @@
+"use client";
+
 import { Reveal } from "@/components/motion/reveal";
 import { SpotlightCard } from "@/components/motion/spotlight-card";
+import { useLocale } from "@/components/providers/locale-provider";
 import { Section } from "@/components/shared/section";
 import { SectionHeading } from "@/components/shared/section-heading";
-import { categoryLabels, skills } from "@/content/data/skills";
+import { skills } from "@/content/data/skills";
 import type { Skill } from "@/types/skill";
 import { TechIcon } from "./tech-icon";
-
-const levelLabels: Record<Skill["level"], string> = {
-  advanced: "Avanzado",
-  proficient: "Competente",
-  learning: "Aprendiendo",
-};
 
 const levelColors: Record<Skill["level"], string> = {
   advanced: "text-brand",
@@ -18,18 +15,20 @@ const levelColors: Record<Skill["level"], string> = {
   learning: "text-muted-foreground",
 };
 
-const categories = Object.keys(categoryLabels) as Skill["category"][];
+const categoryOrder: Skill["category"][] = ["frontend", "backend", "database", "tools", "data"];
 
 export function SkillsSection() {
+  const { t } = useLocale();
+
   return (
     <Section id="habilidades" spacing="sm" variant="elevated">
       <SectionHeading
-        eyebrow="Habilidades"
-        title="Dónde aporto más valor"
-        description="Organizadas por área — el nivel refleja experiencia profesional real, no autoevaluación genérica."
+        eyebrow={t.skills.eyebrow}
+        title={t.skills.title}
+        description={t.skills.description}
       />
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {categories.map((category, i) => {
+        {categoryOrder.map((category, i) => {
           const items = skills.filter((skill) => skill.category === category);
           if (items.length === 0) return null;
 
@@ -37,7 +36,7 @@ export function SkillsSection() {
             <Reveal key={category} delay={i * 0.06}>
               <SpotlightCard className="glass-card h-full rounded-2xl p-6">
                 <h3 className="text-caption text-muted-foreground mb-5 font-medium tracking-[0.12em] uppercase">
-                  {categoryLabels[category]}
+                  {t.skills.categories[category]}
                 </h3>
                 <ul className="space-y-3.5">
                   {items.map((skill) => (
@@ -51,7 +50,7 @@ export function SkillsSection() {
                       <span
                         className={`text-caption font-medium ${levelColors[skill.level]}`}
                       >
-                        {levelLabels[skill.level]}
+                        {t.skills.levels[skill.level]}
                       </span>
                     </li>
                   ))}

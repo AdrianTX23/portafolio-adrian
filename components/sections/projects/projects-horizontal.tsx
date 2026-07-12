@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useLocale } from "@/components/providers/locale-provider";
 import { gsap } from "@/lib/gsap";
 import { ProjectCard } from "./project-card";
 import type { Project } from "@/types/project";
@@ -12,6 +13,7 @@ interface ProjectsHorizontalProps {
 export function ProjectsHorizontal({ projects }: ProjectsHorizontalProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+  const { t } = useLocale();
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -63,7 +65,7 @@ export function ProjectsHorizontal({ projects }: ProjectsHorizontalProps) {
           ))}
           <div className="flex w-[min(40vw,400px)] shrink-0 items-center justify-center">
             <p className="text-muted-foreground text-lead max-w-xs text-center leading-relaxed">
-              Desliza para explorar cada proyecto en detalle.
+              {t.projects.swipeHint}
             </p>
           </div>
         </div>

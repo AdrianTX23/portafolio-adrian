@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useLocale } from "@/components/providers/locale-provider";
+import { LanguageToggle } from "@/components/shared/language-toggle";
 import { Logo } from "@/components/shared/logo";
 import { MobileNav } from "@/components/shared/mobile-nav";
 import { ThemeToggle } from "@/components/shared/theme-toggle";
@@ -12,6 +14,7 @@ import { cn } from "@/lib/utils";
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const shouldReduceMotion = useReducedMotion();
+  const { t } = useLocale();
 
   useEffect(() => {
     function handleScroll() {
@@ -46,12 +49,13 @@ export function Navbar() {
               href={link.href}
               className="text-muted-foreground hover:text-foreground rounded-full px-3.5 py-1.5 text-xs font-medium tracking-wide transition-colors duration-200"
             >
-              {link.label}
+              {t.nav[link.key]}
             </Link>
           ))}
         </div>
 
         <div className="flex items-center gap-0.5 pr-1">
+          <LanguageToggle />
           <ThemeToggle />
           <MobileNav />
         </div>

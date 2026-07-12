@@ -10,10 +10,11 @@ const modules = {
   "design-systems-tailwind-v4": designSystemsTailwindV4,
 };
 
-function computeReadingTime(slug: string): string {
+function computeReadingTime(slug: string): { es: string; en: string } {
   const filePath = path.join(process.cwd(), "content/blog", `${slug}.mdx`);
   const raw = fs.readFileSync(filePath, "utf-8");
-  return readingTime(raw).text.replace("min read", "min de lectura");
+  const en = readingTime(raw).text;
+  return { en, es: en.replace("min read", "min de lectura") };
 }
 
 export function getAllPosts(): BlogPostMeta[] {

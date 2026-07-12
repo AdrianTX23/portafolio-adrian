@@ -3,27 +3,38 @@ import type { TimelineEvent } from "@/types/experience";
 export const timeline: TimelineEvent[] = [
   {
     date: "2020-07",
-    title: "Primer paso profesional",
-    description: "Desarrollador Junior en BIG SAS, Barranquilla — .NET, HTML/CSS/JS y Xamarin.",
+    title: { es: "Primer paso profesional", en: "First professional step" },
+    description: {
+      es: "Desarrollador Junior en BIG SAS, Barranquilla — .NET, HTML/CSS/JS y Xamarin.",
+      en: "Junior Developer at BIG SAS, Barranquilla — .NET, HTML/CSS/JS, and Xamarin.",
+    },
     type: "work",
   },
   {
     date: "2022-02",
-    title: "Freelance a tiempo parcial",
-    description:
-      "Desarrollo frontend remoto para clientes internacionales mientras terminaba la carrera.",
+    title: { es: "Freelance a tiempo parcial", en: "Part-time freelance" },
+    description: {
+      es: "Desarrollo frontend remoto para clientes internacionales mientras terminaba la carrera.",
+      en: "Remote frontend development for international clients while finishing my degree.",
+    },
     type: "work",
   },
   {
     date: "2023",
-    title: "Graduación",
-    description: "Ingeniería de Sistemas, Universidad Simón Bolívar (minor en Ingeniería de Software).",
+    title: { es: "Graduación", en: "Graduation" },
+    description: {
+      es: "Ingeniería de Sistemas, Universidad Simón Bolívar (minor en Ingeniería de Software).",
+      en: "Systems Engineering, Universidad Simón Bolívar (minor in Software Engineering).",
+    },
     type: "education",
   },
   {
     date: "2023-11",
-    title: "SIGPE Consultores",
-    description: "Analista de Desarrollo — soluciones empresariales, MySQL y Power BI.",
+    title: { es: "SIGPE Consultores", en: "SIGPE Consultores" },
+    description: {
+      es: "Analista de Desarrollo — soluciones empresariales, MySQL y Power BI.",
+      en: "Development Analyst — enterprise solutions, MySQL, and Power BI.",
+    },
     type: "work",
   },
 ];

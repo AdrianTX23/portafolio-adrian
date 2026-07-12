@@ -1,3 +1,5 @@
+"use client";
+
 import { ArrowDownRight, MapPin } from "lucide-react";
 import Link from "next/link";
 import { AmbientMesh } from "@/components/motion/ambient-mesh";
@@ -7,25 +9,19 @@ import { Magnetic } from "@/components/motion/magnetic";
 import { Reveal } from "@/components/motion/reveal";
 import { ScrollIndicator } from "@/components/motion/scroll-indicator";
 import { Typewriter } from "@/components/motion/typewriter";
+import { useLocale } from "@/components/providers/locale-provider";
 import { Button } from "@/components/ui/button";
 import { HeroScrollFade } from "./hero-scroll-fade";
 
-const stats = [
-  { label: "Años de experiencia", value: "3+" },
-  { label: "Proyectos entregados", value: "6" },
-  { label: "Nivel de inglés", value: "B2" },
-];
-
-const headline = ["Convierto problemas complejos en productos simples."];
-
-const taglines = [
-  "construyendo interfaces rápidas.",
-  "optimizando cada carga de página.",
-  "cuidando el detalle en cada pixel.",
-  "aprendiendo algo nuevo cada semana.",
-];
-
 export function Hero() {
+  const { t } = useLocale();
+
+  const stats = [
+    { label: t.hero.stats.experience, value: "3+" },
+    { label: t.hero.stats.projects, value: "6" },
+    { label: t.hero.stats.english, value: "B2" },
+  ];
+
   return (
     <section className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden">
       <AmbientMesh intensity="hero" />
@@ -35,27 +31,26 @@ export function Hero() {
           <Reveal>
             <span className="glass text-muted-foreground mb-8 inline-flex items-center gap-2 rounded-full border border-black/5 px-4 py-1.5 text-xs font-medium tracking-wide dark:border-white/10">
               <MapPin className="text-brand size-3.5" />
-              Barranquilla, Colombia
+              {t.hero.location}
               <span className="bg-border mx-1 h-3 w-px" />
-              Frontend Software Engineer
+              {t.hero.role}
             </span>
           </Reveal>
 
           <h1 className="font-heading text-display font-semibold tracking-tight text-balance">
-            <Typewriter phrases={headline} />
+            <Typewriter phrases={[t.hero.headline]} key={t.hero.headline} />
           </h1>
 
           <Reveal delay={0.26}>
             <p className="text-muted-foreground mt-6 font-mono text-sm">
-              <span className="text-brand">&gt;</span> <Typewriter phrases={taglines} />
+              <span className="text-brand">&gt;</span>{" "}
+              <Typewriter phrases={t.hero.taglines} key={t.hero.taglines.join()} />
             </p>
           </Reveal>
 
           <Reveal delay={0.34}>
             <p className="text-lead text-muted-foreground mx-auto mt-5 max-w-2xl text-balance">
-              Ingeniero de Sistemas especializado en Next.js, React, TypeScript y
-              PostgreSQL — con experiencia real en soluciones empresariales, Power BI y
-              desarrollo frontend.
+              {t.hero.description}
             </p>
           </Reveal>
 
@@ -67,7 +62,7 @@ export function Hero() {
                   className="shadow-glow bg-brand text-brand-foreground h-12 gap-2 rounded-full px-7 text-sm font-medium hover:opacity-90"
                 >
                   <Link href="#proyectos">
-                    Ver proyectos
+                    {t.hero.ctaProjects}
                     <ArrowDownRight className="size-4" />
                   </Link>
                 </Button>
@@ -78,7 +73,7 @@ export function Hero() {
                   variant="outline"
                   className="glass h-12 rounded-full border-black/5 px-7 text-sm font-medium backdrop-blur-xl dark:border-white/10"
                 >
-                  <Link href="#contacto">Contactar</Link>
+                  <Link href="#contacto">{t.hero.ctaContact}</Link>
                 </Button>
               </Magnetic>
             </div>

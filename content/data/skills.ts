@@ -18,11 +18,3 @@ export const skills: Skill[] = [
   { name: "GitHub", category: "tools", icon: "github", level: "advanced" },
   { name: "Power BI", category: "data", icon: "powerbi", level: "advanced" },
 ];
-
-export const categoryLabels: Record<Skill["category"], string> = {
-  frontend: "Frontend",
-  backend: "Backend",
-  database: "Bases de datos",
-  tools: "Herramientas",
-  data: "Datos & BI",
-};

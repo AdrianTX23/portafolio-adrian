@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useLocale } from "@/components/providers/locale-provider";
 import { Button } from "@/components/ui/button";
 import { EASE_OUT_EXPO, staggerContainer } from "@/lib/motion";
 import { NAV_LINKS } from "@/lib/nav-links";
@@ -15,6 +16,7 @@ const linkVariants = {
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);
+  const { t } = useLocale();
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -36,7 +38,7 @@ export function MobileNav() {
       <Button
         variant="ghost"
         size="icon"
-        aria-label="Abrir menú"
+        aria-label={t.mobileNav.openLabel}
         onClick={() => setOpen(true)}
         className="md:hidden"
       >
@@ -48,7 +50,7 @@ export function MobileNav() {
           <motion.div
             role="dialog"
             aria-modal="true"
-            aria-label="Menú de navegación"
+            aria-label={t.mobileNav.dialogLabel}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -59,7 +61,7 @@ export function MobileNav() {
               <Button
                 variant="ghost"
                 size="icon"
-                aria-label="Cerrar menú"
+                aria-label={t.mobileNav.closeLabel}
                 onClick={() => setOpen(false)}
               >
                 <X className="size-5" />
@@ -79,7 +81,7 @@ export function MobileNav() {
                     onClick={() => setOpen(false)}
                     className="hover:text-brand text-3xl font-semibold transition-colors"
                   >
-                    {link.label}
+                    {t.nav[link.key]}
                   </Link>
                 </motion.div>
               ))}

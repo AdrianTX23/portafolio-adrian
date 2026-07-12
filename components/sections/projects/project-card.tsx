@@ -1,7 +1,10 @@
+"use client";
+
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { BlurImage } from "@/components/motion/blur-image";
 import { TiltCard } from "@/components/motion/tilt-card";
+import { useLocale } from "@/components/providers/locale-provider";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import type { Project } from "@/types/project";
@@ -13,6 +16,7 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project, index, variant = "default" }: ProjectCardProps) {
+  const { t, locale } = useLocale();
   const isHorizontal = variant === "horizontal";
 
   const imageContent = (
@@ -42,7 +46,7 @@ export function ProjectCard({ project, index, variant = "default" }: ProjectCard
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
         <div className="absolute inset-0 flex items-end justify-center pb-6 opacity-0 transition-all duration-500 group-hover:opacity-100">
           <span className="glass inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-medium text-white backdrop-blur-xl">
-            Ver proyecto
+            {t.projects.viewProject}
             <ArrowUpRight className="size-4" />
           </span>
         </div>
@@ -55,7 +59,7 @@ export function ProjectCard({ project, index, variant = "default" }: ProjectCard
       href={project.liveUrl}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label={`Ver proyecto ${project.title} en vivo`}
+      aria-label={`${t.projects.viewProject} ${project.title}`}
       className={cn(isHorizontal && "block h-full")}
     >
       {imageContent}
@@ -63,7 +67,7 @@ export function ProjectCard({ project, index, variant = "default" }: ProjectCard
   ) : (
     <Link
       href={`/proyectos/${project.slug}`}
-      aria-label={`Ver proyecto ${project.title}`}
+      aria-label={`${t.projects.viewProject} ${project.title}`}
       className={cn(isHorizontal && "block h-full")}
     >
       {imageContent}
@@ -91,7 +95,7 @@ export function ProjectCard({ project, index, variant = "default" }: ProjectCard
           isHorizontal ? "line-clamp-4" : "line-clamp-2",
         )}
       >
-        {project.description}
+        {project.description[locale]}
       </p>
       <div className="flex flex-wrap gap-1.5">
         {project.tags.slice(0, isHorizontal ? 6 : 4).map((tag) => (
@@ -110,17 +114,8 @@ export function ProjectCard({ project, index, variant = "default" }: ProjectCard
         isHorizontal && "grid h-full min-h-[320px] grid-cols-2",
       )}
     >
-      {isHorizontal ? (
-        <>
-          {linkWrapper}
-          {body}
-        </>
-      ) : (
-        <>
-          {linkWrapper}
-          {body}
-        </>
-      )}
+      {linkWrapper}
+      {body}
     </article>
   );
 }
