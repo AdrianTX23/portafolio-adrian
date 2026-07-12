@@ -62,7 +62,7 @@ export function Footer() {
       <div className="section-divider" />
 
       <Container className="grid grid-cols-1 gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="lg:col-span-2 lg:max-w-sm">
+        <div className="sm:col-span-2 lg:max-w-sm">
           <Logo />
           <p className="text-muted-foreground mt-4 text-sm leading-relaxed">
             {t.footer.tagline}

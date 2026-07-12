@@ -41,7 +41,7 @@ export function MobileNav() {
         size="icon"
         aria-label={t.mobileNav.openLabel}
         onClick={() => setOpen(true)}
-        className="md:hidden"
+        className="lg:hidden"
       >
         <Menu className="size-5" />
       </Button>

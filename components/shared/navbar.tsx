@@ -60,7 +60,7 @@ export function Navbar() {
           <Logo />
         </div>
 
-        <div className="hidden items-center gap-1 md:flex">
+        <div className="hidden items-center gap-1 lg:flex">
           {NAV_LINKS.map((link) => {
             const Icon = NAV_ICONS[link.key];
             return (
