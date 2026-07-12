@@ -10,27 +10,42 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
+  const imageContent = (
+    <TiltCard className="overflow-hidden rounded-t-2xl">
+      <div className="bg-muted relative aspect-video">
+        <BlurImage
+          src={project.coverImage}
+          alt={project.title}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+        <div className="absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition-all duration-300 group-hover:bg-black/30 group-hover:opacity-100">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-black">
+            Ver proyecto
+            <ArrowUpRight className="size-4" />
+          </span>
+        </div>
+      </div>
+    </TiltCard>
+  );
+
   return (
     <article className="border-border bg-card shadow-elevation-1 hover:shadow-elevation-3 group rounded-2xl border transition-shadow duration-300">
-      <Link href={`/proyectos/${project.slug}`} aria-label={`Ver proyecto ${project.title}`}>
-        <TiltCard className="overflow-hidden rounded-t-2xl">
-          <div className="bg-muted relative aspect-video">
-            <BlurImage
-              src={project.coverImage}
-              alt={project.title}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            />
-            <div className="absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition-all duration-300 group-hover:bg-black/30 group-hover:opacity-100">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-black">
-                Ver proyecto
-                <ArrowUpRight className="size-4" />
-              </span>
-            </div>
-          </div>
-        </TiltCard>
-      </Link>
+      {project.liveUrl ? (
+        <a
+          href={project.liveUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Ver proyecto ${project.title} en vivo`}
+        >
+          {imageContent}
+        </a>
+      ) : (
+        <Link href={`/proyectos/${project.slug}`} aria-label={`Ver proyecto ${project.title}`}>
+          {imageContent}
+        </Link>
+      )}
 
       <div className="p-6">
         <div className="mb-2 flex items-center justify-between gap-4">
