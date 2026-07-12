@@ -35,7 +35,7 @@ export function HeroScrollFade({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <div ref={ref} className="relative z-10 mx-auto w-full max-w-5xl px-6 text-center sm:px-8">
+    <div ref={ref} className="relative z-10 mx-auto w-full max-w-5xl px-6 text-center sm:px-8 lg:max-w-6xl">
       {children}
     </div>
   );

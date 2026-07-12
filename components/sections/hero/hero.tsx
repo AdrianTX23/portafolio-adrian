@@ -1,6 +1,13 @@
-import { MapPin } from "lucide-react";
+import { ArrowDownRight, MapPin } from "lucide-react";
+import Link from "next/link";
+import { AmbientMesh } from "@/components/motion/ambient-mesh";
+import { CountUp } from "@/components/motion/count-up";
+import { HeroParallax } from "@/components/motion/hero-parallax";
+import { Magnetic } from "@/components/motion/magnetic";
 import { Reveal } from "@/components/motion/reveal";
+import { ScrollIndicator } from "@/components/motion/scroll-indicator";
 import { Typewriter } from "@/components/motion/typewriter";
+import { Button } from "@/components/ui/button";
 import { HeroScrollFade } from "./hero-scroll-fade";
 
 const stats = [
@@ -20,45 +27,85 @@ const taglines = [
 
 export function Hero() {
   return (
-    <section className="relative flex min-h-[92svh] flex-col justify-center overflow-hidden">
+    <section className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden">
+      <AmbientMesh intensity="hero" />
+
       <HeroScrollFade>
-        <Reveal>
-          <span className="border-border text-muted-foreground mb-6 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium">
-            <MapPin className="size-3.5" />
-            Barranquilla, Colombia · Frontend Software Engineer
-          </span>
-        </Reveal>
+        <HeroParallax>
+          <Reveal>
+            <span className="glass text-muted-foreground mb-8 inline-flex items-center gap-2 rounded-full border border-black/5 px-4 py-1.5 text-xs font-medium tracking-wide dark:border-white/10">
+              <MapPin className="text-brand size-3.5" />
+              Barranquilla, Colombia
+              <span className="bg-border mx-1 h-3 w-px" />
+              Frontend Software Engineer
+            </span>
+          </Reveal>
 
-        <h1 className="text-display font-semibold text-balance">
-          <Typewriter phrases={headline} />
-        </h1>
+          <h1 className="font-heading text-display font-semibold tracking-tight text-balance">
+            <Typewriter phrases={headline} />
+          </h1>
 
-        <Reveal delay={0.26}>
-          <p className="text-muted-foreground mt-5 font-mono text-sm">
-            <span className="text-brand">&gt;</span> <Typewriter phrases={taglines} />
-          </p>
-        </Reveal>
+          <Reveal delay={0.26}>
+            <p className="text-muted-foreground mt-6 font-mono text-sm">
+              <span className="text-brand">&gt;</span> <Typewriter phrases={taglines} />
+            </p>
+          </Reveal>
 
-        <Reveal delay={0.34}>
-          <p className="text-lead text-muted-foreground mx-auto mt-4 max-w-2xl text-balance">
-            Ingeniero de Sistemas especializado en Next.js, React, TypeScript y
-            PostgreSQL — con experiencia real en soluciones empresariales, Power BI y
-            desarrollo frontend.
-          </p>
-        </Reveal>
+          <Reveal delay={0.34}>
+            <p className="text-lead text-muted-foreground mx-auto mt-5 max-w-2xl text-balance">
+              Ingeniero de Sistemas especializado en Next.js, React, TypeScript y
+              PostgreSQL — con experiencia real en soluciones empresariales, Power BI y
+              desarrollo frontend.
+            </p>
+          </Reveal>
 
-        <Reveal delay={0.5}>
-          <dl className="mt-14 grid grid-cols-3 gap-4">
-            {stats.map((stat) => (
-              <div key={stat.label}>
-                <dt className="sr-only">{stat.label}</dt>
-                <dd className="text-h3 font-semibold">{stat.value}</dd>
-                <p className="text-caption text-muted-foreground mt-1">{stat.label}</p>
-              </div>
-            ))}
-          </dl>
-        </Reveal>
+          <Reveal delay={0.42}>
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+              <Magnetic>
+                <Button
+                  asChild
+                  className="shadow-glow bg-brand text-brand-foreground h-12 gap-2 rounded-full px-7 text-sm font-medium hover:opacity-90"
+                >
+                  <Link href="#proyectos">
+                    Ver proyectos
+                    <ArrowDownRight className="size-4" />
+                  </Link>
+                </Button>
+              </Magnetic>
+              <Magnetic>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="glass h-12 rounded-full border-black/5 px-7 text-sm font-medium backdrop-blur-xl dark:border-white/10"
+                >
+                  <Link href="#contacto">Contactar</Link>
+                </Button>
+              </Magnetic>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.5}>
+            <dl className="glass-card mt-16 grid grid-cols-3 overflow-hidden rounded-2xl border">
+              {stats.map((stat) => (
+                <div
+                  key={stat.label}
+                  className="bg-background/40 px-4 py-6 backdrop-blur-sm sm:px-8 sm:py-8 [&:not(:last-child)]:border-r [&:not(:last-child)]:border-black/5 dark:[&:not(:last-child)]:border-white/5"
+                >
+                  <dt className="sr-only">{stat.label}</dt>
+                  <dd className="font-heading text-h2 font-semibold tracking-tight">
+                    <CountUp value={stat.value} />
+                  </dd>
+                  <p className="text-caption text-muted-foreground mt-2 font-medium tracking-wider uppercase">
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
+            </dl>
+          </Reveal>
+        </HeroParallax>
       </HeroScrollFade>
+
+      <ScrollIndicator />
     </section>
   );
 }

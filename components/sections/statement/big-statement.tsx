@@ -1,6 +1,5 @@
-import { Reveal } from "@/components/motion/reveal";
+import { ScrollRevealText } from "@/components/motion/scroll-reveal-text";
 import { Section } from "@/components/shared/section";
-import { cn } from "@/lib/utils";
 
 interface StatementPart {
   text: string;
@@ -12,22 +11,21 @@ interface BigStatementProps {
 }
 
 export function BigStatement({ parts }: BigStatementProps) {
+  const fullText = parts
+    .map((part) => (typeof part === "string" ? part : part.text))
+    .join("");
+
+  const highlightPart = parts.find(
+    (part): part is StatementPart => typeof part !== "string" && !!part.strong,
+  );
+
   return (
-    <Section spacing="sm">
-      <Reveal>
-        <p className="text-h1 mx-auto max-w-4xl text-center leading-tight font-semibold text-balance">
-          {parts.map((part, i) => {
-            const isString = typeof part === "string";
-            const text = isString ? part : part.text;
-            const strong = !isString && part.strong;
-            return (
-              <span key={i} className={cn(strong && "text-brand-accent")}>
-                {text}
-              </span>
-            );
-          })}
-        </p>
-      </Reveal>
+    <Section spacing="sm" variant="muted">
+      <ScrollRevealText
+        text={fullText}
+        highlight={highlightPart?.text}
+        className="font-heading"
+      />
     </Section>
   );
 }

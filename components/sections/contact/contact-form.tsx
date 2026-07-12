@@ -24,15 +24,15 @@ export function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="border-border bg-card shadow-elevation-2 space-y-3 rounded-2xl border p-6"
+      className="glass-card space-y-4 rounded-3xl p-7 sm:p-8"
     >
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <input
           type="text"
           placeholder="Tu nombre"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="border-border bg-background focus-visible:ring-ring h-10 rounded-lg border px-3 text-sm outline-none focus-visible:ring-2"
+          className="bg-background/50 focus-visible:ring-brand/50 h-12 rounded-xl border border-white/10 px-4 text-sm outline-none transition-colors focus-visible:ring-2"
           required
         />
         <input
@@ -40,7 +40,7 @@ export function ContactForm() {
           placeholder="Tu correo"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="border-border bg-background focus-visible:ring-ring h-10 rounded-lg border px-3 text-sm outline-none focus-visible:ring-2"
+          className="bg-background/50 focus-visible:ring-brand/50 h-12 rounded-xl border border-white/10 px-4 text-sm outline-none transition-colors focus-visible:ring-2"
           required
         />
       </div>
@@ -48,16 +48,16 @@ export function ContactForm() {
         placeholder="Cuéntame en qué puedo ayudarte..."
         value={message}
         onChange={(e) => setMessage(e.target.value)}
-        rows={4}
-        className="border-border bg-background focus-visible:ring-ring w-full resize-none rounded-lg border px-3 py-2 text-sm outline-none focus-visible:ring-2"
+        rows={5}
+        className="bg-background/50 focus-visible:ring-brand/50 w-full resize-none rounded-xl border border-white/10 px-4 py-3 text-sm outline-none transition-colors focus-visible:ring-2"
         required
       />
 
-      <div className="flex flex-col items-end gap-2">
+      <div className="flex flex-col items-end gap-2 pt-1">
         <Magnetic>
           <Button
             type="submit"
-            className="shadow-glow bg-brand text-brand-foreground gap-2 rounded-full px-5 hover:opacity-90"
+            className="shadow-glow bg-brand text-brand-foreground h-12 gap-2 rounded-full px-7 text-sm font-medium hover:opacity-90"
           >
             Enviar mensaje
             <Send className="size-4" />

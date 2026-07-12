@@ -5,17 +5,17 @@ export function TechMarquee() {
   const track = [...skills, ...skills];
 
   return (
-    <div className="mask-fade-edges relative overflow-hidden py-4">
+    <div className="mask-fade-edges relative overflow-hidden py-6">
       <div
-        className="marquee-track flex w-max items-center gap-10"
-        style={{ "--marquee-duration": "36s" } as React.CSSProperties}
+        className="marquee-track flex w-max items-center gap-4"
+        style={{ "--marquee-duration": "40s" } as React.CSSProperties}
       >
         {track.map((skill, i) => (
           <div
             key={`${skill.name}-${i}`}
-            className="text-muted-foreground flex shrink-0 items-center gap-2.5"
+            className="glass-card flex shrink-0 items-center gap-3 rounded-full px-5 py-2.5"
           >
-            <TechIcon icon={skill.icon} label={skill.name} className="size-6" />
+            <TechIcon icon={skill.icon} label={skill.name} className="size-5" />
             <span className="text-sm font-medium whitespace-nowrap">{skill.name}</span>
           </div>
         ))}

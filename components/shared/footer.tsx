@@ -2,6 +2,7 @@
 
 import { ArrowUp, ArrowUpRight, Mail } from "lucide-react";
 import Link from "next/link";
+import { AmbientMesh } from "@/components/motion/ambient-mesh";
 import { Magnetic } from "@/components/motion/magnetic";
 import { Reveal } from "@/components/motion/reveal";
 import { TextReveal } from "@/components/motion/text-reveal";
@@ -21,28 +22,29 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-border border-t">
-      <div className="py-section-sm text-center">
-        <Container size="narrow">
+    <footer className="relative overflow-hidden">
+      <div className="relative py-section-sm text-center">
+        <AmbientMesh />
+        <Container size="narrow" className="relative">
           <Reveal>
             <TextReveal
               as="p"
               text="¿Construimos algo juntos?"
-              className="text-h1 font-semibold text-balance"
-              wordClassName="text-brand-accent"
+              className="font-heading text-h1 font-semibold tracking-tight text-balance"
+              wordClassName="gradient-text"
             />
           </Reveal>
           <Reveal delay={0.15}>
-            <p className="text-muted-foreground mx-auto mt-4 max-w-md">
+            <p className="text-muted-foreground mx-auto mt-5 max-w-md text-lead">
               Siempre abierto a hablar de nuevos proyectos, roles o ideas.
             </p>
           </Reveal>
           <Reveal delay={0.25}>
-            <div className="mt-8 flex justify-center">
+            <div className="mt-10 flex justify-center">
               <Magnetic>
                 <Button
                   asChild
-                  className="shadow-glow bg-brand text-brand-foreground h-11 gap-2 rounded-full px-6 hover:opacity-90"
+                  className="shadow-glow bg-brand text-brand-foreground h-12 gap-2 rounded-full px-8 text-sm font-medium hover:opacity-90"
                 >
                   <Link href="#contacto">
                     Escríbeme
@@ -55,7 +57,13 @@ export function Footer() {
           <Reveal delay={0.35}>
             <div className="mt-8 flex justify-center gap-2">
               {socials.map((social) => (
-                <Button key={social.label} variant="ghost" size="icon" asChild>
+                <Button
+                  key={social.label}
+                  variant="ghost"
+                  size="icon"
+                  asChild
+                  className="glass size-10 rounded-full border border-white/10"
+                >
                   <a
                     href={social.href}
                     target={social.href.startsWith("mailto:") ? undefined : "_blank"}
@@ -71,15 +79,17 @@ export function Footer() {
         </Container>
       </div>
 
-      <Container className="border-border flex flex-col items-center gap-4 border-t py-6 sm:flex-row sm:justify-between">
+      <div className="section-divider" />
+
+      <Container className="flex flex-col items-center gap-4 py-8 sm:flex-row sm:justify-between">
         <Logo />
-        <p className="text-muted-foreground text-caption">
+        <p className="text-muted-foreground text-caption tracking-wide">
           © {year} Adrián Pico Martínez. Todos los derechos reservados.
         </p>
         <Button
           variant="ghost"
           size="sm"
-          className="gap-1.5"
+          className="glass gap-1.5 rounded-full border border-white/10 px-4"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
           Volver arriba

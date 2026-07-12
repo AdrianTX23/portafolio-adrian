@@ -25,7 +25,7 @@ export function ResumeSection() {
           aria-label="Abrir CV en una pestaña nueva"
           className="mx-auto block max-w-xs"
         >
-          <TiltCard className="shadow-elevation-2 overflow-hidden rounded-2xl">
+          <TiltCard className="glass-card shadow-elevation-2 overflow-hidden rounded-3xl">
             <div className="bg-muted relative aspect-[707/1000]">
               <BlurImage
                 src="/cv-preview.png"
@@ -44,7 +44,7 @@ export function ResumeSection() {
           <Magnetic>
             <Button
               asChild
-              className="shadow-glow bg-brand text-brand-foreground h-11 gap-2 rounded-full px-6 hover:opacity-90"
+              className="shadow-glow bg-brand text-brand-foreground h-12 gap-2 rounded-full px-7 text-sm font-medium hover:opacity-90"
             >
               <a href="/cv.pdf" download>
                 Descargar CV

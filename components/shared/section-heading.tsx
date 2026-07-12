@@ -16,16 +16,20 @@ export function SectionHeading({
   align = "left",
 }: SectionHeadingProps) {
   return (
-    <div className={cn("mb-10", align === "center" && "text-center")}>
-      <Reveal as="p" className="text-brand text-caption mb-2 font-mono uppercase">
+    <div className={cn("mb-14", align === "center" && "text-center")}>
+      <Reveal as="p" className="text-brand text-caption mb-3 font-medium tracking-[0.15em] uppercase">
         {eyebrow}
       </Reveal>
-      <TextReveal as="h2" text={title} className="text-h2 font-semibold" />
+      <TextReveal
+        as="h2"
+        text={title}
+        className="font-heading text-h2 font-semibold tracking-tight"
+      />
       {description && (
         <Reveal delay={0.15}>
           <p
             className={cn(
-              "text-muted-foreground text-lead mt-4 max-w-2xl",
+              "text-muted-foreground text-lead mt-5 max-w-2xl leading-relaxed",
               align === "center" && "mx-auto",
             )}
           >

@@ -8,6 +8,7 @@ interface SectionProps {
   className?: string;
   containerSize?: ContainerSize;
   spacing?: "default" | "sm";
+  variant?: "default" | "elevated" | "muted";
 }
 
 export function Section({
@@ -16,13 +17,27 @@ export function Section({
   className,
   containerSize = "default",
   spacing = "default",
+  variant = "default",
 }: SectionProps) {
   return (
     <section
       id={id}
-      className={cn(spacing === "sm" ? "py-section-sm" : "py-section", className)}
+      className={cn(
+        spacing === "sm" ? "py-section-sm" : "py-section",
+        variant === "elevated" && "bg-secondary/30",
+        variant === "muted" && "relative",
+        className,
+      )}
     >
-      <Container size={containerSize}>{children}</Container>
+      {variant === "muted" && (
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 ambient-glow opacity-50"
+        />
+      )}
+      <Container size={containerSize} className="relative">
+        {children}
+      </Container>
     </section>
   );
 }

@@ -12,22 +12,22 @@ const typeLabels: Record<TimelineEvent["type"], string> = {
 
 export function TimelineSection() {
   return (
-    <Section id="timeline" spacing="sm" containerSize="narrow">
+    <Section id="timeline" spacing="sm" containerSize="narrow" variant="elevated">
       <SectionHeading eyebrow="Recorrido" title="Timeline profesional" />
       <div>
         {timeline.map((event, i) => (
           <Reveal key={event.title} delay={i * 0.08}>
-            <div className="border-border grid grid-cols-[1fr_auto] items-start gap-6 border-b py-8 first:pt-0 last:border-0">
+            <div className="group grid grid-cols-[1fr_auto] items-start gap-6 border-b border-white/5 py-10 first:pt-0 last:border-0">
               <div>
-                <h3 className="text-h3 font-semibold">{event.title}</h3>
-                <p className="text-brand mt-1 text-sm font-medium">
-                  {typeLabels[event.type]}
-                </p>
-                <p className="text-muted-foreground mt-3 max-w-md text-sm">
+                <h3 className="font-heading text-h3 font-semibold tracking-tight">
+                  {event.title}
+                </h3>
+                <p className="text-brand mt-1.5 text-sm font-medium">{typeLabels[event.type]}</p>
+                <p className="text-muted-foreground mt-3 max-w-md text-sm leading-relaxed">
                   {event.description}
                 </p>
               </div>
-              <p className="text-h1 text-muted-foreground/25 font-bold tabular-nums">
+              <p className="font-heading text-h1 text-muted-foreground/20 font-bold tabular-nums transition-colors duration-300 group-hover:text-brand/30">
                 {event.date.slice(0, 4)}
               </p>
             </div>
