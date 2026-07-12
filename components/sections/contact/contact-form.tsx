@@ -7,18 +7,22 @@ import { useLocale } from "@/components/providers/locale-provider";
 import { Button } from "@/components/ui/button";
 import { SOCIAL_LINKS } from "@/lib/nav-links";
 
+const inputClasses =
+  "bg-background/50 focus-visible:ring-brand/50 h-12 w-full rounded-xl border border-white/10 px-4 text-sm outline-none transition-colors focus-visible:ring-2";
+
 export function ContactForm() {
   const { t } = useLocale();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
 
-    const subject = `${t.contact.subjectPrefix} — ${name}`;
+    const mailSubject = `${t.contact.subjectPrefix} — ${subject || name}`;
     const body = `${message}\n\n—\n${name}\n${email}`;
-    const mailto = `mailto:${SOCIAL_LINKS.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const mailto = `mailto:${SOCIAL_LINKS.email}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(body)}`;
 
     window.location.href = mailto;
   }
@@ -26,15 +30,18 @@ export function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="glass-card space-y-4 rounded-3xl p-7 sm:p-8"
+      className="glass-card flex h-full flex-col space-y-4 rounded-2xl p-6 sm:p-8"
     >
+      <h3 className="font-heading text-base font-semibold tracking-tight">
+        {t.contact.formTitle}
+      </h3>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <input
           type="text"
           placeholder={t.contact.namePlaceholder}
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="bg-background/50 focus-visible:ring-brand/50 h-12 rounded-xl border border-white/10 px-4 text-sm outline-none transition-colors focus-visible:ring-2"
+          className={inputClasses}
           required
         />
         <input
@@ -42,16 +49,23 @@ export function ContactForm() {
           placeholder={t.contact.emailPlaceholder}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="bg-background/50 focus-visible:ring-brand/50 h-12 rounded-xl border border-white/10 px-4 text-sm outline-none transition-colors focus-visible:ring-2"
+          className={inputClasses}
           required
         />
       </div>
+      <input
+        type="text"
+        placeholder={t.contact.subjectPlaceholder}
+        value={subject}
+        onChange={(e) => setSubject(e.target.value)}
+        className={inputClasses}
+      />
       <textarea
         placeholder={t.contact.messagePlaceholder}
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         rows={5}
-        className="bg-background/50 focus-visible:ring-brand/50 w-full resize-none rounded-xl border border-white/10 px-4 py-3 text-sm outline-none transition-colors focus-visible:ring-2"
+        className="bg-background/50 focus-visible:ring-brand/50 w-full flex-1 resize-none rounded-xl border border-white/10 px-4 py-3 text-sm outline-none transition-colors focus-visible:ring-2"
         required
       />
 

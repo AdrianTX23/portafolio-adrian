@@ -16,11 +16,7 @@ export function ExperienceSection() {
         title={t.experience.title}
         description={t.experience.description}
       />
-      <div className="relative">
-        <div
-          aria-hidden="true"
-          className="bg-border absolute top-0 bottom-0 left-[4.5rem] hidden w-px sm:block"
-        />
+      <div className="space-y-6">
         {experience.map((item, i) => (
           <ExperienceItem key={item.company} item={item} delay={i * 0.08} />
         ))}

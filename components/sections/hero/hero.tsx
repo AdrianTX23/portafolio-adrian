@@ -1,96 +1,110 @@
 "use client";
 
-import { ArrowDownRight, MapPin } from "lucide-react";
+import { Briefcase, FileDown, FolderGit2, Languages, Mail, User } from "lucide-react";
 import Link from "next/link";
-import { AmbientMesh } from "@/components/motion/ambient-mesh";
 import { CountUp } from "@/components/motion/count-up";
 import { HeroParallax } from "@/components/motion/hero-parallax";
 import { Magnetic } from "@/components/motion/magnetic";
 import { Reveal } from "@/components/motion/reveal";
 import { ScrollIndicator } from "@/components/motion/scroll-indicator";
+import { Spotlight } from "@/components/motion/spotlight";
 import { Typewriter } from "@/components/motion/typewriter";
 import { useLocale } from "@/components/providers/locale-provider";
 import { Button } from "@/components/ui/button";
 import { HeroScrollFade } from "./hero-scroll-fade";
 
+const EMAIL = "adrian-pico-28@hotmail.com";
+
 export function Hero() {
   const { t } = useLocale();
 
   const stats = [
-    { label: t.hero.stats.experience, value: "3+" },
-    { label: t.hero.stats.projects, value: "6" },
-    { label: t.hero.stats.english, value: "B2" },
+    { label: t.hero.stats.experience, value: "3+", icon: Briefcase },
+    { label: t.hero.stats.projects, value: "6", icon: FolderGit2 },
+    { label: t.hero.stats.english, value: "B2", icon: Languages },
   ];
 
   return (
     <section className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden">
-      <AmbientMesh intensity="hero" />
+      <Spotlight />
 
       <HeroScrollFade>
         <HeroParallax>
           <Reveal>
-            <span className="glass text-muted-foreground mb-8 inline-flex items-center gap-2 rounded-full border border-black/5 px-4 py-1.5 text-xs font-medium tracking-wide dark:border-white/10">
-              <MapPin className="text-brand size-3.5" />
-              {t.hero.location}
-              <span className="bg-border mx-1 h-3 w-px" />
-              {t.hero.role}
-            </span>
+            <h1 className="font-heading text-display font-bold tracking-tight text-balance">
+              Adrián Pico Martínez
+            </h1>
           </Reveal>
 
-          <h1 className="font-heading text-display font-semibold tracking-tight text-balance">
-            <Typewriter phrases={[t.hero.headline]} key={t.hero.headline} />
-          </h1>
+          <Reveal delay={0.12}>
+            <p className="font-heading text-brand mt-3 text-h2 font-semibold tracking-tight text-balance">
+              {t.hero.headline}
+            </p>
+          </Reveal>
 
-          <Reveal delay={0.26}>
-            <p className="text-muted-foreground mt-6 font-mono text-sm">
+          <Reveal delay={0.22}>
+            <p className="text-muted-foreground mt-5 font-mono text-sm">
               <span className="text-brand">&gt;</span>{" "}
               <Typewriter phrases={t.hero.taglines} key={t.hero.taglines.join()} />
             </p>
           </Reveal>
 
-          <Reveal delay={0.34}>
-            <p className="text-lead text-muted-foreground mx-auto mt-5 max-w-2xl text-balance">
+          <Reveal delay={0.3}>
+            <p className="text-muted-foreground mx-auto mt-5 max-w-xl text-base text-balance sm:text-lg">
               {t.hero.description}
             </p>
           </Reveal>
 
-          <Reveal delay={0.42}>
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+          <Reveal delay={0.38}>
+            <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
               <Magnetic>
                 <Button
                   asChild
-                  className="shadow-glow bg-brand text-brand-foreground h-12 gap-2 rounded-full px-7 text-sm font-medium hover:opacity-90"
+                  className="shadow-glow bg-brand text-brand-foreground h-11 gap-2 rounded-full px-6 text-sm font-medium hover:opacity-90"
                 >
-                  <Link href="#proyectos">
-                    {t.hero.ctaProjects}
-                    <ArrowDownRight className="size-4" />
-                  </Link>
+                  <a href="/cv.pdf" download>
+                    <FileDown className="size-4" />
+                    {t.hero.downloadCv}
+                  </a>
                 </Button>
               </Magnetic>
               <Magnetic>
                 <Button
                   asChild
                   variant="outline"
-                  className="glass h-12 rounded-full border-black/5 px-7 text-sm font-medium backdrop-blur-xl dark:border-white/10"
+                  className="glass h-11 gap-2 rounded-full border-black/5 px-6 text-sm font-medium backdrop-blur-xl dark:border-white/10"
                 >
-                  <Link href="#contacto">{t.hero.ctaContact}</Link>
+                  <Link href="#sobre-mi">
+                    <User className="size-4" />
+                    {t.hero.aboutMe}
+                  </Link>
                 </Button>
               </Magnetic>
             </div>
           </Reveal>
 
-          <Reveal delay={0.5}>
-            <dl className="glass-card mt-16 grid grid-cols-3 overflow-hidden rounded-2xl border">
+          <Reveal delay={0.46}>
+            <a
+              href={`mailto:${EMAIL}`}
+              className="text-muted-foreground hover:text-foreground mt-8 inline-flex items-center gap-2 text-sm transition-colors"
+            >
+              <Mail className="text-brand size-4" />
+              {EMAIL}
+            </a>
+          </Reveal>
+
+          <Reveal delay={0.54}>
+            <dl className="mx-auto mt-14 grid max-w-2xl grid-cols-3 gap-4 sm:gap-10">
               {stats.map((stat) => (
-                <div
-                  key={stat.label}
-                  className="bg-background/40 px-4 py-6 backdrop-blur-sm sm:px-8 sm:py-8 [&:not(:last-child)]:border-r [&:not(:last-child)]:border-black/5 dark:[&:not(:last-child)]:border-white/5"
-                >
+                <div key={stat.label} className="flex flex-col items-center gap-2">
+                  <span className="border-glass bg-brand-muted text-brand flex size-10 items-center justify-center rounded-xl border">
+                    <stat.icon className="size-4.5" />
+                  </span>
                   <dt className="sr-only">{stat.label}</dt>
-                  <dd className="font-heading text-h2 font-semibold tracking-tight">
+                  <dd className="font-heading text-2xl font-semibold tracking-tight sm:text-3xl">
                     <CountUp value={stat.value} />
                   </dd>
-                  <p className="text-caption text-muted-foreground mt-2 font-medium tracking-wider uppercase">
+                  <p className="text-caption text-muted-foreground -mt-1 font-medium tracking-wider uppercase">
                     {stat.label}
                   </p>
                 </div>

@@ -1,5 +1,7 @@
 "use client";
 
+import { BarChart3, Database, MonitorSmartphone, Server, Wrench } from "lucide-react";
+import type { ComponentType } from "react";
 import { Reveal } from "@/components/motion/reveal";
 import { SpotlightCard } from "@/components/motion/spotlight-card";
 import { useLocale } from "@/components/providers/locale-provider";
@@ -9,13 +11,21 @@ import { skills } from "@/content/data/skills";
 import type { Skill } from "@/types/skill";
 import { TechIcon } from "./tech-icon";
 
-const levelColors: Record<Skill["level"], string> = {
-  advanced: "text-brand",
-  proficient: "text-foreground/70",
-  learning: "text-muted-foreground",
+const levelDots: Record<Skill["level"], string> = {
+  advanced: "bg-brand",
+  proficient: "bg-foreground/40",
+  learning: "bg-muted-foreground/40",
 };
 
 const categoryOrder: Skill["category"][] = ["frontend", "backend", "database", "tools", "data"];
+
+const categoryIcons: Record<Skill["category"], ComponentType<{ className?: string }>> = {
+  frontend: MonitorSmartphone,
+  backend: Server,
+  database: Database,
+  tools: Wrench,
+  data: BarChart3,
+};
 
 export function SkillsSection() {
   const { t } = useLocale();
@@ -31,26 +41,32 @@ export function SkillsSection() {
         {categoryOrder.map((category, i) => {
           const items = skills.filter((skill) => skill.category === category);
           if (items.length === 0) return null;
+          const CategoryIcon = categoryIcons[category];
 
           return (
             <Reveal key={category} delay={i * 0.06}>
               <SpotlightCard className="glass-card h-full rounded-2xl p-6">
-                <h3 className="text-caption text-muted-foreground mb-5 font-medium tracking-[0.12em] uppercase">
-                  {t.skills.categories[category]}
-                </h3>
-                <ul className="space-y-3.5">
+                <div className="mb-5 flex items-center gap-3">
+                  <span className="border-glass bg-brand-muted text-brand flex size-9 items-center justify-center rounded-xl border">
+                    <CategoryIcon className="size-4" />
+                  </span>
+                  <h3 className="font-heading text-base font-semibold tracking-tight">
+                    {t.skills.categories[category]}
+                  </h3>
+                </div>
+                <ul className="flex flex-wrap gap-2">
                   {items.map((skill) => (
-                    <li key={skill.name} className="flex items-center justify-between gap-3">
-                      <div className="flex items-center gap-3">
-                        <div className="bg-brand-muted flex size-8 items-center justify-center rounded-lg">
-                          <TechIcon icon={skill.icon} label={skill.name} className="size-4" />
-                        </div>
-                        <span className="text-sm font-medium">{skill.name}</span>
-                      </div>
+                    <li key={skill.name}>
                       <span
-                        className={`text-caption font-medium ${levelColors[skill.level]}`}
+                        title={t.skills.levels[skill.level]}
+                        className="border-glass bg-background/40 inline-flex items-center gap-2 rounded-lg border px-3 py-1.5 text-sm font-medium transition-colors hover:border-white/20"
                       >
-                        {t.skills.levels[skill.level]}
+                        <TechIcon icon={skill.icon} label={skill.name} className="size-3.5" />
+                        {skill.name}
+                        <span
+                          aria-label={t.skills.levels[skill.level]}
+                          className={`size-1.5 rounded-full ${levelDots[skill.level]}`}
+                        />
                       </span>
                     </li>
                   ))}
@@ -59,6 +75,14 @@ export function SkillsSection() {
             </Reveal>
           );
         })}
+      </div>
+      <div className="text-caption text-muted-foreground mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
+        {(Object.keys(levelDots) as Skill["level"][]).map((level) => (
+          <span key={level} className="inline-flex items-center gap-2">
+            <span className={`size-1.5 rounded-full ${levelDots[level]}`} />
+            {t.skills.levels[level]}
+          </span>
+        ))}
       </div>
     </Section>
   );

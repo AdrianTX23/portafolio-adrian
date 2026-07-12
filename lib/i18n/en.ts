@@ -33,8 +33,8 @@ export const en: typeof es = {
     ],
     description:
       "Systems Engineer specialized in Next.js, React, TypeScript, and PostgreSQL — with real experience in enterprise solutions, Power BI, and frontend development.",
-    ctaProjects: "View projects",
-    ctaContact: "Get in touch",
+    downloadCv: "Download CV",
+    aboutMe: "About me",
     stats: {
       experience: "Years of experience",
       projects: "Projects delivered",
@@ -140,8 +140,16 @@ export const en: typeof es = {
     eyebrow: "Contact",
     title: "Let's talk about your next project",
     description: "I personally reply to every message — tell me what you need and I'll get back to you shortly.",
+    infoTitle: "Contact information",
+    emailLabel: "Email",
+    locationLabel: "Location",
+    timezoneLabel: "Time zone",
+    timezoneValue: "COT (UTC-5)",
+    connectTitle: "Connect with me",
+    formTitle: "Send me a message",
     namePlaceholder: "Your name",
     emailPlaceholder: "Your email",
+    subjectPlaceholder: "Subject",
     messagePlaceholder: "Tell me how I can help...",
     send: "Send message",
     sendNote: "Your email client will open with the message ready to send.",
@@ -154,5 +162,10 @@ export const en: typeof es = {
     writeToMe: "Write to me",
     rights: "All rights reserved.",
     backToTop: "Back to top",
+    contactTitle: "Contact",
+    quickLinksTitle: "Quick links",
+    socialTitle: "Social",
+    tagline:
+      "Frontend Software Engineer — I build modern, fast web products with attention to detail.",
   },
 };

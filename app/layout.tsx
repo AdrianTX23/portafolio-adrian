@@ -87,7 +87,8 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${inter.variable} ${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col">
+      {/* suppressHydrationWarning: las extensiones del navegador inyectan atributos en <body> antes de que React hidrate */}
+      <body suppressHydrationWarning className="flex min-h-full flex-col">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

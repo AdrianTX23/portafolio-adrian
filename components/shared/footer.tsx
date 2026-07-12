@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUp, ArrowUpRight, Mail } from "lucide-react";
+import { ArrowUp, ArrowUpRight, Mail, MapPin } from "lucide-react";
 import Link from "next/link";
 import { AmbientMesh } from "@/components/motion/ambient-mesh";
 import { Magnetic } from "@/components/motion/magnetic";
@@ -11,17 +11,17 @@ import { Container } from "@/components/shared/container";
 import { GithubIcon, LinkedinIcon } from "@/components/shared/icons";
 import { Logo } from "@/components/shared/logo";
 import { Button } from "@/components/ui/button";
-import { SOCIAL_LINKS } from "@/lib/nav-links";
-
-const socials = [
-  { label: "GitHub", href: SOCIAL_LINKS.github, icon: GithubIcon },
-  { label: "LinkedIn", href: SOCIAL_LINKS.linkedin, icon: LinkedinIcon },
-  { label: "Correo", href: `mailto:${SOCIAL_LINKS.email}`, icon: Mail },
-];
+import { NAV_LINKS, SOCIAL_LINKS } from "@/lib/nav-links";
 
 export function Footer() {
   const year = new Date().getFullYear();
   const { t } = useLocale();
+
+  const socials = [
+    { label: "GitHub", href: SOCIAL_LINKS.github, icon: GithubIcon },
+    { label: "LinkedIn", href: SOCIAL_LINKS.linkedin, icon: LinkedinIcon },
+    { label: t.contact.emailLabel, href: `mailto:${SOCIAL_LINKS.email}`, icon: Mail },
+  ];
 
   return (
     <footer className="relative overflow-hidden">
@@ -56,35 +56,82 @@ export function Footer() {
               </Magnetic>
             </div>
           </Reveal>
-          <Reveal delay={0.35}>
-            <div className="mt-8 flex justify-center gap-2">
-              {socials.map((social) => (
-                <Button
-                  key={social.label}
-                  variant="ghost"
-                  size="icon"
-                  asChild
-                  className="glass size-10 rounded-full border border-white/10"
-                >
-                  <a
-                    href={social.href}
-                    target={social.href.startsWith("mailto:") ? undefined : "_blank"}
-                    rel="noopener noreferrer"
-                    aria-label={social.label}
-                  >
-                    <social.icon className="size-4.5" />
-                  </a>
-                </Button>
-              ))}
-            </div>
-          </Reveal>
         </Container>
       </div>
 
       <div className="section-divider" />
 
-      <Container className="flex flex-col items-center gap-4 py-8 sm:flex-row sm:justify-between">
-        <Logo />
+      <Container className="grid grid-cols-1 gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="lg:col-span-2 lg:max-w-sm">
+          <Logo />
+          <p className="text-muted-foreground mt-4 text-sm leading-relaxed">
+            {t.footer.tagline}
+          </p>
+        </div>
+
+        <div>
+          <h3 className="text-caption text-muted-foreground mb-4 font-medium tracking-[0.12em] uppercase">
+            {t.footer.quickLinksTitle}
+          </h3>
+          <ul className="space-y-2.5">
+            {NAV_LINKS.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="text-muted-foreground hover:text-foreground text-sm transition-colors"
+                >
+                  {t.nav[link.key]}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h3 className="text-caption text-muted-foreground mb-4 font-medium tracking-[0.12em] uppercase">
+            {t.footer.contactTitle}
+          </h3>
+          <ul className="space-y-2.5 text-sm">
+            <li>
+              <a
+                href={`mailto:${SOCIAL_LINKS.email}`}
+                className="text-muted-foreground hover:text-foreground inline-flex items-center gap-2 break-all transition-colors"
+              >
+                <Mail className="text-brand size-3.5 shrink-0" />
+                {SOCIAL_LINKS.email}
+              </a>
+            </li>
+            <li className="text-muted-foreground inline-flex items-center gap-2">
+              <MapPin className="text-brand size-3.5 shrink-0" />
+              {t.contact.location}
+            </li>
+          </ul>
+          <div className="mt-5 flex gap-2">
+            {socials.map((social) => (
+              <Button
+                key={social.label}
+                variant="ghost"
+                size="icon"
+                asChild
+                className="glass size-9 rounded-full border border-white/10"
+              >
+                <a
+                  href={social.href}
+                  target={social.href.startsWith("mailto:") ? undefined : "_blank"}
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                >
+                  <social.icon className="size-4" />
+                </a>
+              </Button>
+            ))}
+          </div>
+        </div>
+      </Container>
+
+      <div className="section-divider" />
+
+      <Container className="flex flex-col items-center gap-4 py-7 sm:flex-row sm:justify-between">
         <p className="text-muted-foreground text-caption tracking-wide">
           © {year} Adrián Pico Martínez. {t.footer.rights}
         </p>

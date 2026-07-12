@@ -47,7 +47,7 @@ export function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-muted-foreground hover:text-foreground rounded-full px-3.5 py-1.5 text-xs font-medium tracking-wide transition-colors duration-200"
+              className="text-muted-foreground hover:text-foreground rounded-full px-3.5 py-1.5 text-xs font-medium tracking-wide transition-colors duration-200 hover:bg-white/5"
             >
               {t.nav[link.key]}
             </Link>

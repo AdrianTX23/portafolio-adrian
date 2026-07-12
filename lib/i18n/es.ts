@@ -31,8 +31,8 @@ export const es = {
     ],
     description:
       "Ingeniero de Sistemas especializado en Next.js, React, TypeScript y PostgreSQL — con experiencia real en soluciones empresariales, Power BI y desarrollo frontend.",
-    ctaProjects: "Ver proyectos",
-    ctaContact: "Contactar",
+    downloadCv: "Descargar CV",
+    aboutMe: "Sobre mí",
     stats: {
       experience: "Años de experiencia",
       projects: "Proyectos entregados",
@@ -139,8 +139,16 @@ export const es = {
     title: "Hablemos de tu próximo proyecto",
     description:
       "Respondo personalmente cada mensaje — cuéntame qué necesitas y te contacto a la brevedad.",
+    infoTitle: "Información de contacto",
+    emailLabel: "Correo",
+    locationLabel: "Ubicación",
+    timezoneLabel: "Zona horaria",
+    timezoneValue: "COT (UTC-5)",
+    connectTitle: "Conecta conmigo",
+    formTitle: "Envíame un mensaje",
     namePlaceholder: "Tu nombre",
     emailPlaceholder: "Tu correo",
+    subjectPlaceholder: "Asunto",
     messagePlaceholder: "Cuéntame en qué puedo ayudarte...",
     send: "Enviar mensaje",
     sendNote: "Se abrirá tu cliente de correo con el mensaje ya redactado.",
@@ -153,5 +161,10 @@ export const es = {
     writeToMe: "Escríbeme",
     rights: "Todos los derechos reservados.",
     backToTop: "Volver arriba",
+    contactTitle: "Contacto",
+    quickLinksTitle: "Enlaces rápidos",
+    socialTitle: "Redes",
+    tagline:
+      "Frontend Software Engineer — construyo productos web modernos, rápidos y cuidados al detalle.",
   },
 };
