@@ -13,7 +13,7 @@ export const NAV_LINKS: NavLink[] = [
 ];
 
 export const SOCIAL_LINKS = {
-  github: "https://github.com/",
-  linkedin: "https://www.linkedin.com/",
+  github: "https://github.com/AdrianTX23",
+  linkedin: "https://www.linkedin.com/in/adrian-gabriel-pico-martinez-68a25b210/",
   email: "adrian-pico-28@hotmail.com",
 } as const;
