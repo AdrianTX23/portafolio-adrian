@@ -3,6 +3,9 @@ import { ImageResponse } from "next/og";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const siteHost = siteUrl.replace(/^https?:\/\//, "").replace(/\/$/, "");
+
 export default function OpengraphImage() {
   return new ImageResponse(
     (
@@ -41,10 +44,10 @@ export default function OpengraphImage() {
               fontWeight: 700,
             }}
           >
-            {">_"}
+            {"</>"}
           </div>
           <div style={{ display: "flex", color: "#9ca3af", fontSize: "26px" }}>
-            adrianpico.dev
+            {siteHost}
           </div>
         </div>
 
