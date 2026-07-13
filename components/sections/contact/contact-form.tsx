@@ -1,6 +1,6 @@
 "use client";
 
-import { Send } from "lucide-react";
+import { Loader2, Send } from "lucide-react";
 import { useState, type FormEvent } from "react";
 import { Magnetic } from "@/components/motion/magnetic";
 import { useLocale } from "@/components/providers/locale-provider";
@@ -10,21 +10,58 @@ import { SOCIAL_LINKS } from "@/lib/nav-links";
 const inputClasses =
   "bg-background/50 focus-visible:ring-brand/50 h-12 w-full rounded-xl border border-white/10 px-4 text-sm outline-none transition-colors focus-visible:ring-2";
 
+type Status = "idle" | "sending" | "success" | "error";
+
 export function ContactForm() {
   const { t } = useLocale();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<Status>("idle");
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    setStatus("sending");
 
-    const mailSubject = `${t.contact.subjectPrefix} — ${subject || name}`;
-    const body = `${message}\n\n—\n${name}\n${email}`;
-    const mailto = `mailto:${SOCIAL_LINKS.email}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(body)}`;
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY,
+          subject: `${t.contact.subjectPrefix} — ${subject || name}`,
+          from_name: name,
+          email,
+          message,
+        }),
+      });
 
-    window.location.href = mailto;
+      const result = await response.json();
+
+      if (result.success) {
+        setStatus("success");
+        setName("");
+        setEmail("");
+        setSubject("");
+        setMessage("");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  }
+
+  if (status === "success") {
+    return (
+      <div className="glass-card flex h-full flex-col items-center justify-center space-y-2 rounded-2xl p-6 text-center sm:p-8">
+        <h3 className="font-heading text-lg font-semibold tracking-tight">
+          {t.contact.successTitle}
+        </h3>
+        <p className="text-muted-foreground text-sm">{t.contact.successNote}</p>
+      </div>
+    );
   }
 
   return (
@@ -73,13 +110,36 @@ export function ContactForm() {
         <Magnetic>
           <Button
             type="submit"
-            className="shadow-glow bg-brand text-brand-foreground h-12 gap-2 rounded-full px-7 text-sm font-medium hover:opacity-90"
+            disabled={status === "sending"}
+            className="shadow-glow bg-brand text-brand-foreground h-12 gap-2 rounded-full px-7 text-sm font-medium hover:opacity-90 disabled:opacity-70"
           >
-            {t.contact.send}
-            <Send className="size-4" />
+            {status === "sending" ? (
+              <>
+                {t.contact.sending}
+                <Loader2 className="size-4 animate-spin" />
+              </>
+            ) : (
+              <>
+                {t.contact.send}
+                <Send className="size-4" />
+              </>
+            )}
           </Button>
         </Magnetic>
-        <p className="text-muted-foreground text-caption">{t.contact.sendNote}</p>
+        <p
+          className={`text-caption ${status === "error" ? "text-destructive" : "text-muted-foreground"}`}
+        >
+          {status === "error" ? (
+            <>
+              {t.contact.errorNote}{" "}
+              <a href={`mailto:${SOCIAL_LINKS.email}`} className="underline">
+                {SOCIAL_LINKS.email}
+              </a>
+            </>
+          ) : (
+            t.contact.sendNote
+          )}
+        </p>
       </div>
     </form>
   );
