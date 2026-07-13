@@ -169,6 +169,12 @@ export const es = {
     subjectPrefix: "Contacto desde el portafolio",
     location: "Barranquilla, Colombia",
   },
+  notFound: {
+    title: "Esta página no existe",
+    description:
+      "Puede que el enlace esté roto o la página se haya movido. Volvamos al inicio.",
+    cta: "Volver al inicio",
+  },
   footer: {
     heading: "¿Construimos algo juntos?",
     description: "Siempre abierto a hablar de nuevos proyectos, roles o ideas.",

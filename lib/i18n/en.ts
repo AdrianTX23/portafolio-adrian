@@ -170,6 +170,11 @@ export const en: typeof es = {
     subjectPrefix: "Portfolio contact",
     location: "Barranquilla, Colombia",
   },
+  notFound: {
+    title: "This page doesn't exist",
+    description: "The link might be broken or the page may have moved. Let's head back home.",
+    cta: "Back to home",
+  },
   footer: {
     heading: "Shall we build something together?",
     description: "Always open to talk about new projects, roles, or ideas.",
