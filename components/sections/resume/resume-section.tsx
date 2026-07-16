@@ -4,6 +4,7 @@ import {
   Award,
   Briefcase,
   Download,
+  FolderGit2,
   GraduationCap,
   Languages,
   Mail,
@@ -18,6 +19,7 @@ import { Section } from "@/components/shared/section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { Button } from "@/components/ui/button";
 import { experience } from "@/content/data/experience";
+import { projects } from "@/content/data/projects";
 import { skills } from "@/content/data/skills";
 import { formatMonthYear } from "@/lib/format-date";
 import { SOCIAL_LINKS } from "@/lib/nav-links";
@@ -179,6 +181,36 @@ export function ResumeSection() {
                 </h5>
                 <p className="text-sm font-medium text-blue-700">{t.resume.university}</p>
                 <p className="mt-0.5 text-xs text-neutral-500">{t.resume.degreeDates}</p>
+                <p className="mt-2 text-sm text-neutral-600">{t.resume.minor}</p>
+              </div>
+            </section>
+
+            <section>
+              <SheetHeading icon={FolderGit2}>{t.resume.projectsTitle}</SheetHeading>
+              <div className="mt-4 space-y-4">
+                {projects.map((project) => (
+                  <article key={project.slug}>
+                    <h5 className="text-base font-semibold text-neutral-900">
+                      {project.title}{" "}
+                      <span className="text-sm font-normal text-neutral-500">
+                        · {project.year}
+                      </span>
+                    </h5>
+                    <p className="text-sm text-neutral-600">
+                      {project.description[locale]}
+                    </p>
+                    {project.liveUrl && (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-blue-700 underline"
+                      >
+                        {project.liveUrl.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+                      </a>
+                    )}
+                  </article>
+                ))}
               </div>
             </section>
 

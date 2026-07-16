@@ -11,6 +11,7 @@ import {
   SiPostgresql,
   SiReact,
   SiSupabase,
+  SiSwift,
   SiTailwindcss,
   SiTypescript,
 } from "@icons-pack/react-simple-icons";
@@ -26,12 +27,14 @@ const ICONS: Record<string, ComponentType<{ className?: string; color?: string }
   tailwindcss: SiTailwindcss,
   php: SiPhp,
   dotnet: SiDotnet,
+  aspnet: SiDotnet,
   nodejs: SiNodedotjs,
   supabase: SiSupabase,
   postgresql: SiPostgresql,
   mysql: SiMysql,
   git: SiGit,
   github: SiGithub,
+  swift: SiSwift,
 };
 
 // Brand marks that are near-black/white and would vanish against a dark

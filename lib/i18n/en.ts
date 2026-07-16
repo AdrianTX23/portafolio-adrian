@@ -84,6 +84,8 @@ export const en: typeof es = {
     degree: "Systems Engineering",
     university: "Universidad Simón Bolívar · Barranquilla, Colombia",
     degreeDates: "Graduated in 2023",
+    minor: "Minor in Software Engineering",
+    projectsTitle: "Projects",
   },
   skills: {
     eyebrow: "Skills",

@@ -82,6 +82,8 @@ export const es = {
     degree: "Ingeniería de Sistemas",
     university: "Universidad Simón Bolívar · Barranquilla, Colombia",
     degreeDates: "Graduado en 2023",
+    minor: "Minor en Ingeniería de Software",
+    projectsTitle: "Proyectos",
   },
   skills: {
     eyebrow: "Habilidades",
