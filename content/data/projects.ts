@@ -16,4 +16,20 @@ export const projects: Project[] = [
     liveUrl: "https://goldenshop-one.vercel.app/",
     featured: true,
   },
+  {
+    slug: "nova-erp",
+    title: "NovaERP",
+    description: {
+      es: "ERP SaaS multiempresa con 13 módulos de negocio interconectados — inventario, ventas, facturación, contabilidad de partida doble y CRM —, arquitectura limpia por capas y RBAC granular por tenant.",
+      en: "Multi-tenant ERP SaaS with 13 interconnected business modules — inventory, sales, invoicing, double-entry accounting, and CRM —, clean layered architecture, and granular per-tenant RBAC.",
+    },
+    role: { es: "Desarrollador Full Stack", en: "Full Stack Developer" },
+    year: 2026,
+    tags: ["Next.js", "ASP.NET Core", "PostgreSQL", "TypeScript"],
+    coverImage: "/projects/nova-erp.jpg",
+    gallery: ["/projects/nova-erp.jpg"],
+    liveUrl: "https://novaerp-web-alpha.vercel.app/",
+    repoUrl: "https://github.com/AdrianTX23/novaerp",
+    featured: true,
+  },
 ];
