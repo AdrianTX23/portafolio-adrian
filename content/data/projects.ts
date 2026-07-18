@@ -32,4 +32,20 @@ export const projects: Project[] = [
     repoUrl: "https://github.com/AdrianTX23/novaerp",
     featured: true,
   },
+  {
+    slug: "medicore-hms",
+    title: "MediCore HMS",
+    description: {
+      es: "Sistema de gestión hospitalaria con arquitectura limpia por capas — pacientes, agenda médica, historia clínica electrónica, laboratorio, farmacia y facturación —, RBAC de 9 roles y auditoría inmutable.",
+      en: "Hospital management system with a clean layered architecture — patients, scheduling, electronic medical records, lab, pharmacy, and billing —, 9-role RBAC, and immutable audit trails.",
+    },
+    role: { es: "Desarrollador Full Stack", en: "Full Stack Developer" },
+    year: 2026,
+    tags: ["Next.js", "TypeScript", "Supabase", "Prisma"],
+    coverImage: "/projects/medicore-hms.jpg",
+    gallery: ["/projects/medicore-hms.jpg"],
+    liveUrl: "https://medicore-hms-sage.vercel.app/",
+    repoUrl: "https://github.com/AdrianTX23/medicore-hms",
+    featured: true,
+  },
 ];
