@@ -22,7 +22,7 @@ export function BlogTeaserContent({ posts }: BlogTeaserContentProps) {
           <Reveal key={post.slug} delay={i * 0.08}>
             <Link
               href={`/blog/${post.slug}`}
-              className="glass-card group block rounded-2xl p-5 transition-all duration-300 hover:border-white/15"
+              className="glass-card hover-lift group block rounded-2xl p-5 transition-colors duration-300 hover:border-white/15"
             >
               <p className="text-caption text-muted-foreground font-mono tracking-wide">
                 {new Date(post.date).toLocaleDateString(locale, {

@@ -47,9 +47,9 @@ export function About() {
                 {facts.map((fact) => (
                   <div
                     key={fact.label}
-                    className="bg-background/50 rounded-2xl border border-white/5 p-4"
+                    className="group bg-background/50 hover-lift rounded-2xl border border-white/5 p-4 transition-colors duration-300 hover:border-white/15"
                   >
-                    <fact.icon className="text-brand mb-2 size-4" />
+                    <fact.icon className="text-brand mb-2 size-4 transition-transform duration-300 ease-out group-hover:scale-110" />
                     <dt className="text-caption text-muted-foreground font-medium tracking-wider uppercase">
                       {fact.label}
                     </dt>

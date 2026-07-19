@@ -20,7 +20,14 @@ export function BlogListContent({ posts }: BlogListContentProps) {
       <div className="divide-border divide-y">
         {posts.map((post, i) => (
           <Reveal key={post.slug} delay={i * 0.06} as="article">
-            <Link href={`/blog/${post.slug}`} className="group block py-6">
+            <Link
+              href={`/blog/${post.slug}`}
+              className="group relative block py-6 pl-0 transition-[padding] duration-300 ease-out hover:pl-4"
+            >
+              <span
+                aria-hidden="true"
+                className="bg-brand absolute top-0 bottom-0 left-0 w-0.5 origin-top scale-y-0 transition-transform duration-300 ease-out group-hover:scale-y-100"
+              />
               <div className="flex flex-wrap items-center gap-3">
                 <p className="text-muted-foreground text-caption font-mono">
                   {new Date(post.date).toLocaleDateString(locale, {

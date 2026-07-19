@@ -3,6 +3,7 @@
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { BlurImage } from "@/components/motion/blur-image";
+import { Magnetic } from "@/components/motion/magnetic";
 import { Reveal } from "@/components/motion/reveal";
 import { TextReveal } from "@/components/motion/text-reveal";
 import { TiltCard } from "@/components/motion/tilt-card";
@@ -24,9 +25,9 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
       <Reveal>
         <Link
           href="/proyectos"
-          className="text-muted-foreground hover:text-foreground mb-8 inline-flex items-center gap-1.5 text-sm"
+          className="text-muted-foreground hover:text-foreground group mb-8 inline-flex items-center gap-1.5 text-sm transition-colors"
         >
-          <ArrowLeft className="size-4" />
+          <ArrowLeft className="size-4 transition-transform duration-300 ease-out group-hover:-translate-x-1" />
           {t.projects.backToProjects}
         </Link>
       </Reveal>
@@ -43,20 +44,24 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
         <Reveal delay={0.15}>
           <div className="flex gap-2">
             {project.liveUrl && (
-              <Button asChild size="sm" className="gap-1.5">
-                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                  {t.projects.viewLive}
-                  <ArrowUpRight className="size-3.5" />
-                </a>
-              </Button>
+              <Magnetic>
+                <Button asChild size="sm" className="shadow-glow gap-1.5">
+                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                    {t.projects.viewLive}
+                    <ArrowUpRight className="size-3.5" />
+                  </a>
+                </Button>
+              </Magnetic>
             )}
             {project.repoUrl && (
-              <Button asChild size="sm" variant="outline" className="gap-1.5">
-                <a href={project.repoUrl} target="_blank" rel="noopener noreferrer">
-                  <GithubIcon className="size-3.5" />
-                  {t.projects.repository}
-                </a>
-              </Button>
+              <Magnetic>
+                <Button asChild size="sm" variant="outline" className="gap-1.5">
+                  <a href={project.repoUrl} target="_blank" rel="noopener noreferrer">
+                    <GithubIcon className="size-3.5" />
+                    {t.projects.repository}
+                  </a>
+                </Button>
+              </Magnetic>
             )}
           </div>
         </Reveal>

@@ -73,7 +73,7 @@ export function Footer() {
                 variant="ghost"
                 size="icon"
                 asChild
-                className="glass size-9 rounded-full border border-white/10"
+                className="glass group size-9 rounded-full border border-white/10 transition-colors hover:border-brand-border"
               >
                 <a
                   href={social.href}
@@ -81,7 +81,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   aria-label={social.label}
                 >
-                  <social.icon className="size-4" />
+                  <social.icon className="group-hover:text-brand size-4 transition-transform duration-300 ease-out group-hover:scale-110" />
                 </a>
               </Button>
             ))}
@@ -98,11 +98,11 @@ export function Footer() {
         <Button
           variant="ghost"
           size="sm"
-          className="glass gap-1.5 rounded-full border border-white/10 px-4"
+          className="glass group hover-lift gap-1.5 rounded-full border border-white/10 px-4 transition-colors hover:border-brand-border"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
           {t.footer.backToTop}
-          <ArrowUp className="size-3.5" />
+          <ArrowUp className="size-3.5 transition-transform duration-300 ease-out group-hover:-translate-y-1" />
         </Button>
       </Container>
     </footer>

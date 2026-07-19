@@ -313,6 +313,35 @@
   .dark .noise-overlay {
     opacity: 0.04;
   }
+
+  .hover-lift {
+    transition:
+      transform 0.4s var(--ease-out-expo),
+      box-shadow 0.4s var(--ease-out-expo);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--elevation-3);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hover-lift {
+      transition: none;
+    }
+    .hover-lift:hover {
+      transform: none;
+    }
+  }
+
+  .animate-float {
+    animation: float-gentle 6s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: float-gentle 7s ease-in-out infinite;
+    animation-delay: -2.5s;
+  }
 }
 
 @keyframes wave-hand {
@@ -368,6 +397,16 @@
   }
 }
 
+@keyframes float-gentle {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -14px, 0);
+  }
+}
+
 @keyframes scroll-bounce {
   0%,
   100% {
@@ -382,7 +421,9 @@
 
 @media (prefers-reduced-motion: reduce) {
   .marquee-track,
-  .animate-wave {
+  .animate-wave,
+  .animate-float,
+  .animate-float-delayed {
     animation: none;
   }
 }

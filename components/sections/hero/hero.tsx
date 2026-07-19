@@ -23,6 +23,13 @@ export function Hero() {
     <section className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden">
       <Spotlight />
 
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 hidden lg:block">
+        <span className="bg-brand/40 animate-float absolute top-[22%] left-[12%] size-2 rounded-full blur-[1px]" />
+        <span className="bg-brand/25 animate-float-delayed absolute top-[68%] left-[18%] size-3 rounded-full blur-[2px]" />
+        <span className="bg-brand/30 animate-float-delayed absolute top-[30%] right-[14%] size-2.5 rounded-full blur-[1px]" />
+        <span className="bg-brand/20 animate-float absolute top-[72%] right-[10%] size-2 rounded-full blur-[1px]" />
+      </div>
+
       <HeroScrollFade>
         <HeroParallax>
           <Reveal>
@@ -58,9 +65,12 @@ export function Hero() {
           <Reveal delay={0.42}>
             <dl className="mx-auto mt-14 grid max-w-2xl grid-cols-3 gap-4 sm:gap-10">
               {stats.map((stat) => (
-                <div key={stat.label} className="flex flex-col items-center gap-2">
-                  <span className="border-glass bg-brand-muted text-brand flex size-10 items-center justify-center rounded-xl border">
-                    <stat.icon className="size-4.5" />
+                <div
+                  key={stat.label}
+                  className="group flex flex-col items-center gap-2"
+                >
+                  <span className="border-glass bg-brand-muted text-brand hover-lift flex size-10 items-center justify-center rounded-xl border transition-colors duration-300 group-hover:border-brand-border">
+                    <stat.icon className="size-4.5 transition-transform duration-300 ease-out group-hover:scale-110" />
                   </span>
                   <dt className="sr-only">{stat.label}</dt>
                   <dd className="font-heading text-2xl font-semibold tracking-tight sm:text-3xl">

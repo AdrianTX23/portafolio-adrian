@@ -110,7 +110,7 @@ export function ProjectCard({ project, index, variant = "default" }: ProjectCard
   return (
     <article
       className={cn(
-        "glass-card group overflow-hidden rounded-3xl transition-all duration-500 hover:border-white/15 hover:shadow-elevation-3",
+        "glass-card hover-lift group overflow-hidden rounded-3xl transition-colors duration-500 hover:border-white/15",
         isHorizontal && "grid h-full min-h-[320px] grid-cols-2",
       )}
     >

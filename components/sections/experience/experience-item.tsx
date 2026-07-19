@@ -18,7 +18,7 @@ export function ExperienceItem({ item, delay }: ExperienceItemProps) {
 
   return (
     <Reveal delay={delay}>
-      <SpotlightCard className="glass-card rounded-2xl p-6 transition-all duration-300 hover:border-white/15 sm:p-8">
+      <SpotlightCard className="glass-card hover-lift rounded-2xl p-6 transition-all duration-300 hover:border-white/15 sm:p-8">
         <div className="flex items-start gap-4">
           <span className="border-glass bg-brand-muted text-brand mt-1 flex size-11 shrink-0 items-center justify-center rounded-xl border">
             <Building2 className="size-5" />

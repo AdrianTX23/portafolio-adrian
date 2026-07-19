@@ -25,7 +25,8 @@ export function SpotlightCard({ children, className }: SpotlightCardProps) {
     <div
       onMouseMove={handleMouseMove}
       className={cn(
-        "group relative overflow-hidden rounded-3xl border border-white/8 transition-all duration-500 hover:border-white/15 hover:shadow-elevation-3",
+        "group relative overflow-hidden rounded-3xl border border-white/8 transition-all duration-500",
+        "hover:border-brand-border hover:shadow-elevation-3",
         "glass-card",
         className,
       )}
