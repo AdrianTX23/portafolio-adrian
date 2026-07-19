@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { useLocale } from "@/components/providers/locale-provider";
-import { gsap } from "@/lib/gsap";
 import { ProjectCard } from "./project-card";
 import type { Project } from "@/types/project";
 
@@ -11,53 +11,50 @@ interface ProjectsHorizontalProps {
 }
 
 export function ProjectsHorizontal({ projects }: ProjectsHorizontalProps) {
-  const sectionRef = useRef<HTMLElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const { t } = useLocale();
+  const shouldReduceMotion = useReducedMotion();
+  const [scrollDistance, setScrollDistance] = useState(0);
 
   useEffect(() => {
-    const section = sectionRef.current;
     const track = trackRef.current;
-    if (!section || !track) return;
+    if (!track) return;
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    if (prefersReducedMotion) return;
+    function measure() {
+      if (!track) return;
+      setScrollDistance(Math.max(0, track.scrollWidth - window.innerWidth + 160));
+    }
 
-    const mm = gsap.matchMedia();
-
-    mm.add("(min-width: 1024px)", () => {
-      const getScrollDistance = () => track.scrollWidth - window.innerWidth + 160;
-
-      const tween = gsap.to(track, {
-        x: () => -getScrollDistance(),
-        ease: "none",
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: () => `+=${getScrollDistance()}`,
-          pin: true,
-          scrub: 0.8,
-          invalidateOnRefresh: true,
-          anticipatePin: 1,
-        },
-      });
-
-      return () => tween.scrollTrigger?.kill();
-    });
-
-    return () => mm.revert();
+    measure();
+    const resizeObserver = new ResizeObserver(measure);
+    resizeObserver.observe(track);
+    window.addEventListener("resize", measure);
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", measure);
+    };
   }, [projects.length]);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+  const x = useTransform(scrollYProgress, [0, 1], [0, -scrollDistance]);
 
   return (
     <section
-      ref={sectionRef}
-      className="relative hidden overflow-hidden lg:block"
+      ref={containerRef}
+      className="relative hidden lg:block"
+      style={{ height: shouldReduceMotion ? undefined : `calc(100svh + ${scrollDistance}px)` }}
       aria-label="Proyectos en scroll horizontal"
     >
-      <div className="flex h-[85svh] items-center">
-        <div ref={trackRef} className="flex items-stretch gap-8 px-8 will-change-transform">
+      <div className="sticky top-0 flex h-[100svh] items-center overflow-hidden">
+        <motion.div
+          ref={trackRef}
+          className="flex items-stretch gap-8 px-8"
+          style={shouldReduceMotion ? undefined : { x }}
+        >
           {projects.map((project, i) => (
             <div key={project.slug} className="w-[min(72vw,680px)] shrink-0">
               <ProjectCard project={project} index={i} variant="horizontal" />
@@ -68,7 +65,7 @@ export function ProjectsHorizontal({ projects }: ProjectsHorizontalProps) {
               {t.projects.swipeHint}
             </p>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
