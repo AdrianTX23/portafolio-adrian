@@ -48,4 +48,20 @@ export const projects: Project[] = [
     repoUrl: "https://github.com/AdrianTX23/medicore-hms",
     featured: true,
   },
+  {
+    slug: "lumen-ai",
+    title: "LUMEN AI",
+    description: {
+      es: "App de finanzas personales nativa en IA — billetera con copiloto conversacional que solo cita transacciones reales, nunca cifras inventadas. Clean Architecture en monorepo modular, capa de datos local-first reactiva y gráficos propios, para móvil (iOS/Android) y web desde un mismo código.",
+      en: "AI-native personal finance app — a wallet with a conversational copilot that only cites real transactions, never a hallucinated figure. Clean Architecture over a modular monorepo, a reactive local-first data layer, and custom charts, shared across mobile (iOS/Android) and web from one codebase.",
+    },
+    role: { es: "Desarrollador Mobile & Full Stack", en: "Mobile & Full Stack Developer" },
+    year: 2026,
+    tags: ["Flutter", "Dart", "Riverpod", "TypeScript"],
+    coverImage: "/projects/lumen-ai.jpg",
+    gallery: ["/projects/lumen-ai.jpg"],
+    liveUrl: "https://adriantx23.github.io/lumenai/",
+    repoUrl: "https://github.com/AdrianTX23/lumenai",
+    featured: true,
+  },
 ];
