@@ -7,6 +7,7 @@ import { BlurImage } from "@/components/motion/blur-image";
 import { Magnetic } from "@/components/motion/magnetic";
 import { Reveal } from "@/components/motion/reveal";
 import { SpotlightCard } from "@/components/motion/spotlight-card";
+import { ProjectGallery } from "@/components/sections/projects/project-gallery";
 import { TextReveal } from "@/components/motion/text-reveal";
 import { TiltCard } from "@/components/motion/tilt-card";
 import { useLocale } from "@/components/providers/locale-provider";
@@ -121,6 +122,17 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
           </div>
         </Reveal>
       </div>
+
+      {project.gallery.length > 1 && (
+        <div className="mt-16 sm:mt-20">
+          <ProjectGallery
+            title={project.title}
+            images={project.gallery}
+            summary={project.description[locale]}
+            liveUrl={project.liveUrl}
+          />
+        </div>
+      )}
 
       {cs && (
         <div className="mt-16 space-y-16 sm:mt-20 sm:space-y-20">

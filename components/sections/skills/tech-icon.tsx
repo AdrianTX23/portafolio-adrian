@@ -1,5 +1,10 @@
 import {
+  SiCss,
+  SiDart,
+  SiDocker,
   SiDotnet,
+  SiFlutter,
+  SiFramer,
   SiGit,
   SiGithub,
   SiHtml5,
@@ -9,29 +14,44 @@ import {
   SiNodedotjs,
   SiPhp,
   SiPostgresql,
+  SiPrisma,
   SiReact,
+  SiReactquery,
+  SiRedis,
+  SiShadcnui,
   SiSupabase,
   SiSwift,
   SiTailwindcss,
   SiTypescript,
+  SiZod,
 } from "@icons-pack/react-simple-icons";
 import type { ComponentType } from "react";
 import { cn } from "@/lib/utils";
 
 const ICONS: Record<string, ComponentType<{ className?: string; color?: string }>> = {
   html5: SiHtml5,
+  css: SiCss,
   javascript: SiJavascript,
   typescript: SiTypescript,
   react: SiReact,
   nextjs: SiNextdotjs,
   tailwindcss: SiTailwindcss,
+  framermotion: SiFramer,
+  shadcn: SiShadcnui,
+  tanstack: SiReactquery,
+  zod: SiZod,
   php: SiPhp,
   dotnet: SiDotnet,
   aspnet: SiDotnet,
   nodejs: SiNodedotjs,
+  flutter: SiFlutter,
+  dart: SiDart,
   supabase: SiSupabase,
   postgresql: SiPostgresql,
+  prisma: SiPrisma,
   mysql: SiMysql,
+  redis: SiRedis,
+  docker: SiDocker,
   git: SiGit,
   github: SiGithub,
   swift: SiSwift,
@@ -39,7 +59,7 @@ const ICONS: Record<string, ComponentType<{ className?: string; color?: string }
 
 // Brand marks that are near-black/white and would vanish against a dark
 // background — render these with currentColor instead of their true brand hex.
-const MONOCHROME_ICONS = new Set(["nextjs", "github"]);
+const MONOCHROME_ICONS = new Set(["nextjs", "github", "shadcn", "prisma", "framermotion"]);
 
 interface TechIconProps {
   icon: string;
