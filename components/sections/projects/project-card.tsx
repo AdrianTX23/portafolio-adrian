@@ -54,17 +54,7 @@ export function ProjectCard({ project, index, variant = "default" }: ProjectCard
     </TiltCard>
   );
 
-  const linkWrapper = project.liveUrl ? (
-    <a
-      href={project.liveUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={`${t.projects.viewProject} ${project.title}`}
-      className={cn(isHorizontal && "block h-full")}
-    >
-      {imageContent}
-    </a>
-  ) : (
+  const linkWrapper = (
     <Link
       href={`/proyectos/${project.slug}`}
       aria-label={`${t.projects.viewProject} ${project.title}`}
