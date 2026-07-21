@@ -127,6 +127,12 @@ export const es = {
     allEyebrow: "Portafolio completo",
     allTitle: "Todos los proyectos",
     allDescription: "Cada tarjeta lleva a una vista detallada con capturas, stack técnico y enlaces.",
+    overviewLabel: "Resumen",
+    contextTitle: "El reto",
+    approachTitle: "El enfoque",
+    featuresTitle: "Qué construí",
+    architectureTitle: "Decisiones técnicas",
+    outcomeTitle: "Resultados y aprendizajes",
   },
   timeline: {
     eyebrow: "Recorrido",

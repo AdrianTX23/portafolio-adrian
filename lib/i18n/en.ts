@@ -129,6 +129,12 @@ export const en: typeof es = {
     allEyebrow: "Full portfolio",
     allTitle: "All projects",
     allDescription: "Each card opens a detailed view with screenshots, tech stack, and links.",
+    overviewLabel: "Overview",
+    contextTitle: "The challenge",
+    approachTitle: "The approach",
+    featuresTitle: "What I built",
+    architectureTitle: "Technical decisions",
+    outcomeTitle: "Outcomes & learnings",
   },
   timeline: {
     eyebrow: "Journey",
